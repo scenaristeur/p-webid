@@ -7,10 +7,8 @@
 </template>
 
 <script>
-import store from '../store'
 
 export default {
-  store,
   name: 'PLogin',
   props: {
     msg: String
@@ -20,15 +18,18 @@ export default {
   },
   methods: {
     login() {
-      let wi = Math.random()
-      console.log(wi)
-      this.$store.commit('setWebId', wi)
+      this.webId = Math.random()
+    }
+  },
+  watch:{
+    webId(){
+      console.log("watch webid", this.webId)
     }
   },
   computed:{
     webId:{
       get: function() { return this.$store.state.webId},
-      set: function() {}
+      set: function(value) { this.$store.commit('setWebId', 'L'+value)}
     },
   }
 }

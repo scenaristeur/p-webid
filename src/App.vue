@@ -10,9 +10,11 @@
 </template>
 
 <script>
+import store from './store'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
+  store,
   name: 'App',
   components: {
     HelloWorld,

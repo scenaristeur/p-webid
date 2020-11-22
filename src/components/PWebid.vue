@@ -2,14 +2,13 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
   WEBID  webid: {{ webId }}
+    <button @click="logout">Logout</button>
   </div>
 </template>
 
 <script>
-import store from '../store'
 
 export default {
-  store,
   name: 'PWebid',
   props: {
     msg: String
@@ -17,10 +16,20 @@ export default {
   created(){
     this.webId = this.$store.state.webId
   },
+  methods: {
+    logout() {
+      this.webId = Math.random()
+    }
+  },
+  watch:{
+    webId(){
+      console.log("watch webid", this.webId)
+    }
+  },
   computed:{
     webId:{
       get: function() { return this.$store.state.webId},
-      set: function() {}
+      set: function(value) { this.$store.commit('setWebId', 'W'+value)}
     },
   }
 }
