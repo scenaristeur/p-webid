@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build" : "vue-cli-service build --target wc-async --name popock src/components/*.vue",
+    "build": "vue-cli-service build --target wc-async --name popock src/components/*.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.19.0",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

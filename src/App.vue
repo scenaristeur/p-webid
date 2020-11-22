@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
 
     Login: <Login />
     Webid: <Webid />
@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

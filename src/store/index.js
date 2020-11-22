@@ -1,36 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import solid from './modules/solid'
+import storage from './modules/storage'
+// import parle from './modules/parle'
+// import chat from './modules/chat'
+// import websocket from './modules/websocket'
+// import crud from './modules/crud'
+// import inbox from './modules/inbox'
+// import groups from './modules/groups'
+// import agora from './modules/agora'
+// import gouvernance from './modules/gouvernance'
+// import workspaces from './modules/workspaces'
+// import semapps from './modules/semapps'
+// import migration from './modules/migration'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    webId: null,
-    storage: null
   },
   mutations: {
-    setWebId(state, webId){
-      console.log("mut",webId)
-      state.webId = webId
-    },
-    setStorage(state, storage){
-      console.log("mut",storage)
-      state.storage = storage
-    }
   },
   actions: {
-    async  setWebId(context, webId){
-      console.log("action",webId)
-      context.commit('setWebId',webId)
-      let storage = null
-      if (webId != null){
-        storage =  await solid.data[webId].storage
-        context.commit('setStorage', `${storage}`)
-      }else{
-        context.commit('setStorage', null)
-      }
-    }
   },
-  modules: {
-  }
+  modules: { solid, storage /*websocket, parle, chat, crud, inbox, groups, agora, gouvernance, workspaces, semapps, migration*/}
 })

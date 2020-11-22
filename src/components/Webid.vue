@@ -11,7 +11,7 @@ export default {
   store,
   name: 'Webid',
   created(){
-    this.webId = this.$store.state.webId
+    this.webId = this.$store.state.solid.webId
   },
   methods: {
     },
@@ -22,7 +22,7 @@ export default {
   },
   computed:{
     webId:{
-      get: function() { return this.$store.state.webId},
+      get: function() { return this.$store.state.solid.webId},
       set: function() {}
     },
   }

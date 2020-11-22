@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <button v-if="webId == null" @click="login">Login</button>
-    <button v-else @click="logout">Logout</button>
+    <b-button v-if="webId == null" @click="login" variant="success">Login</b-button>
+    <b-button v-else @click="logout" variant="danger">Logout</b-button>
   </div>
 </template>
 
@@ -40,8 +40,8 @@ export default {
   },
   computed:{
     webId:{
-      get: function() { return this.$store.state.webId},
-      set: function(value) { this.$store.dispatch('setWebId', value)}
+      get: function() { return this.$store.state.solid.webId},
+      set: function(value) { this.$store.dispatch('solid/setWebId', value)}
     },
   }
 }
