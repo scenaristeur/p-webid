@@ -846,8 +846,6 @@ var componentNormalizer = __webpack_require__("2877");
 
 
 
-window.customElements.define('popock-hello-world', vue_wc_wrapper(external_Vue_default.a, () => __webpack_require__.e(/* import() */ 4).then(__webpack_require__.bind(null, "f49e"))))
-
 window.customElements.define('popock-p-login', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, "860e"))))
 
 window.customElements.define('popock-p-webid', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, "8c75"))))
