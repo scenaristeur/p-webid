@@ -1,6 +1,6 @@
 {
   "name": "p-webid",
-  "version": "0.0.1-a",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
