@@ -2,6 +2,8 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PLogin />
+    <PWebid />
   </div>
 </template>
 
@@ -11,7 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    'PLogin': () => import('@/components/PLogin.vue'),
+    'PWebid': () => import('@/components/PWebid.vue'),
   }
 }
 </script>
