@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    LOGIN 89 webid: {{ webId }}
-    <button @click="login">Login</button>
+  WEBID 100  webid: {{ webId }}
+
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import store from '../store'
 
 export default {
   store,
-  name: 'PLogin',
+  name: 'Webid',
   props: {
     msg: String
   },
@@ -19,10 +19,7 @@ export default {
     this.webId = this.$store.state.webId
   },
   methods: {
-    login() {
-      this.webId = Math.random()
-    }
-  },
+    },
   watch:{
     webId(){
       console.log("watch webid", this.webId)
@@ -31,7 +28,7 @@ export default {
   computed:{
     webId:{
       get: function() { return this.$store.state.webId},
-      set: function(value) { this.$store.commit('setWebId', 'L'+value)}
+      set: function() {}
     },
   }
 }

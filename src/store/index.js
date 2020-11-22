@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    webId:"must change this webId"
+    webId: null
   },
   mutations: {
     setWebId(state, webId){

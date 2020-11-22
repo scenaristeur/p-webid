@@ -1,37 +1,43 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-  WEBID 89  webid: {{ webId }}
-    <button @click="logout">Logout</button>
+    Todo 89  webid: {{ webId }}
   </div>
 </template>
 
 <script>
 import store from '../store'
+const auth = solid.auth
+
+const fc   = new SolidFileClient(auth)
 
 export default {
   store,
-  name: 'PWebid',
+  name: 'Todo',
   props: {
     msg: String
   },
-  created(){
-    this.webId = this.$store.state.webId
+  async created(){
+    //console.log(fc)
+
   },
   methods: {
-    logout() {
-      this.webId = Math.random()
-    }
+
   },
   watch:{
-    webId(){
+    async webId(){
       console.log("watch webid", this.webId)
+      if (this.webId != null){
+        let content = await fc.readFile( this.webId )
+        console.log(content)
+      }
+
     }
   },
   computed:{
     webId:{
       get: function() { return this.$store.state.webId},
-      set: function(value) { this.$store.commit('setWebId', 'W'+value)}
+      set: function() {}
     },
   }
 }

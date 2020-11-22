@@ -1,8 +1,9 @@
 <template>
   <div id="app">
 
-PLogin:  <PLogin />
-PWebid:    <PWebid />
+    Login:  <Login />
+    Webid:    <Webid />
+    Todo : <Todo />
   </div>
 </template>
 
@@ -13,8 +14,9 @@ export default {
   store,
   name: 'App',
   components: {
-    'PLogin': () => import('@/components/PLogin.vue'),
-    'PWebid': () => import('@/components/PWebid.vue'),
+    'Login': () => import('@/components/Login.vue'),
+    'Webid': () => import('@/components/Webid.vue'),
+    'Todo': () => import('@/components/Todo.vue'),
   }
 }
 </script>
