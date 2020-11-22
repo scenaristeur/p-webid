@@ -846,9 +846,11 @@ var componentNormalizer = __webpack_require__("2877");
 
 
 
-window.customElements.define('popock-p-login', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, "860e"))))
+window.customElements.define('popock-login', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, "f2ee"))))
 
-window.customElements.define('popock-p-webid', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, "8c75"))))
+window.customElements.define('popock-todo', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, "a50c"))))
+
+window.customElements.define('popock-webid', vue_wc_wrapper(external_Vue_default.a, () => Promise.all(/* import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, "e246"))))
 
 /***/ }),
 
