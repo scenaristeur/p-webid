@@ -1,12 +1,15 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    webid: {{ webId }}
+  WEBID  webid: {{ webId }}
   </div>
 </template>
 
 <script>
+import store from '../store'
+
 export default {
+  store,
   name: 'PWebid',
   props: {
     msg: String

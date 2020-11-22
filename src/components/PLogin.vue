@@ -1,11 +1,12 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    webid: {{ webId }}
+  LOGIN   webid: {{ webId }}
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'PLogin',
   props: {
