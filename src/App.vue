@@ -1,23 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
 
-    <PLogin />
-    <PWebid />
-    <hr>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+PLogin:  <PLogin />
+PWebid:    <PWebid />
   </div>
 </template>
 
 <script>
 import store from './store'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   store,
   name: 'App',
   components: {
-    HelloWorld,
     'PLogin': () => import('@/components/PLogin.vue'),
     'PWebid': () => import('@/components/PWebid.vue'),
   }
