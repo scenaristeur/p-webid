@@ -1,14 +1,16 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    LOGIN 23 webid: {{ webId }}
+    LOGIN 28 webid: {{ webId }}
     <button @click="login">Login</button>
   </div>
 </template>
 
 <script>
+import store from '../store'
 
 export default {
+  store,
   name: 'PLogin',
   props: {
     msg: String
