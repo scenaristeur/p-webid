@@ -7,9 +7,6 @@
 
 <script>
 import store from '../store'
-const auth = solid.auth
-
-const fc   = new SolidFileClient(auth)
 
 export default {
   store,
@@ -27,11 +24,6 @@ export default {
   watch:{
     async webId(){
       console.log("watch webid", this.webId)
-      if (this.webId != null){
-        let content = await fc.readFile( this.webId )
-        console.log(content)
-      }
-
     }
   },
   computed:{

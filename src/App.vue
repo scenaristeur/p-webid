@@ -3,8 +3,8 @@
 
     Login: <Login />
     Webid: <Webid />
-    Todo : <Todo />
     Storage: <Storage />
+    Todo : <Todo />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     'Login': () => import('@/components/Login.vue'),
     'Webid': () => import('@/components/Webid.vue'),
     'Todo': () => import('@/components/Todo.vue'),
-      'Storage': () => import('@/components/Storage.vue'),
+    'Storage': () => import('@/components/Storage.vue'),
   }
 }
 </script>

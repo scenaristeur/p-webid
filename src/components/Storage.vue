@@ -1,11 +1,17 @@
 <template>
   <div class="webid">
-    storage: {{ storage }}
+    <fieldset>
+      storage: {{ storage }}<br>
+      folder: {{ folder }}
+    </fieldset>
+    BASIC | NETWORK |  DATA
   </div>
 </template>
 
 <script>
 import store from '../store'
+const auth = solid.auth
+const fc   = new SolidFileClient(auth)
 
 export default {
   store,
@@ -13,11 +19,22 @@ export default {
   created(){
     this.storage = this.$store.state.storage
   },
+  data: function () {
+    return {
+      folder: null
+    }
+  },
   methods: {
   },
   watch:{
-    webId(){
+    async storage(){
       console.log("watch storage", this.storage)
+      if (this.storage != null){
+        this.folder = await fc.readFolder( this.storage )
+        console.log(this.folder)
+      }else{
+        this.folder = null
+      }
     }
   },
   computed:{

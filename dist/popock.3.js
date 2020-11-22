@@ -35,9 +35,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
       if (webId != null) {
         storage = await solid.data[webId].storage;
+        context.commit('setStorage', `${storage}`);
+      } else {
+        context.commit('setStorage', null);
       }
-
-      context.commit('setStorage', storage);
     }
 
   },

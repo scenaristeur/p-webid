@@ -25,9 +25,10 @@ export default new Vuex.Store({
       let storage = null
       if (webId != null){
         storage =  await solid.data[webId].storage
-
+        context.commit('setStorage', `${storage}`)
+      }else{
+        context.commit('setStorage', null)
       }
-      context.commit('setStorage', storage)
     }
   },
   modules: {

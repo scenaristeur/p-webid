@@ -19,7 +19,7 @@
 <body>
 <popock-login></popock-login>
 <popock-webid></popock-webid>
-
+<popock-storage></popock-storage>
 <popock-todo></popock-todo>
 </body>
 
