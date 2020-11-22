@@ -12,15 +12,35 @@
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]);
 /* harmony default export */ __webpack_exports__["a"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].Store({
   state: {
-    webId: null
+    webId: null,
+    storage: null
   },
   mutations: {
-    setWebId: function setWebId(state, webId) {
-      console.log(webId);
+    setWebId(state, webId) {
+      console.log("mut", webId);
       state.webId = webId;
+    },
+
+    setStorage(state, storage) {
+      console.log("mut", storage);
+      state.storage = storage;
     }
+
   },
-  actions: {},
+  actions: {
+    async setWebId(context, webId) {
+      console.log("action", webId);
+      context.commit('setWebId', webId);
+      let storage = null;
+
+      if (webId != null) {
+        storage = await solid.data[webId].storage;
+      }
+
+      context.commit('setStorage', storage);
+    }
+
+  },
   modules: {}
 }));
 

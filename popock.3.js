@@ -12,15 +12,35 @@
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]);
 /* harmony default export */ __webpack_exports__["a"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].Store({
   state: {
-    webId: null
+    webId: null,
+    storage: null
   },
   mutations: {
-    setWebId: function setWebId(state, webId) {
-      console.log(webId);
+    setWebId(state, webId) {
+      console.log("mut", webId);
       state.webId = webId;
+    },
+
+    setStorage(state, storage) {
+      console.log("mut", storage);
+      state.storage = storage;
     }
+
   },
-  actions: {},
+  actions: {
+    async setWebId(context, webId) {
+      console.log("action", webId);
+      context.commit('setWebId', webId);
+      let storage = null;
+
+      if (webId != null) {
+        storage = await solid.data[webId].storage;
+      }
+
+      context.commit('setStorage', storage);
+    }
+
+  },
   modules: {}
 }));
 
@@ -33,12 +53,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c44bea90-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Login.vue?vue&type=template&id=28d264e5&shadow
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c44bea90-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Login.vue?vue&type=template&id=12025a30&shadow
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"login"},[(_vm.webId == null)?_c('button',{on:{"click":_vm.login}},[_vm._v("Login")]):_c('button',{on:{"click":_vm.logout}},[_vm._v("Logout")])])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Login.vue?vue&type=template&id=28d264e5&shadow
+// CONCATENATED MODULE: ./src/components/Login.vue?vue&type=template&id=12025a30&shadow
 
 // EXTERNAL MODULE: ./src/store/index.js
 var store = __webpack_require__("4360");
@@ -95,7 +115,7 @@ const popUri = 'https://solidcommunity.net/common/popup.html';
         return this.$store.state.webId;
       },
       set: function (value) {
-        this.$store.commit('setWebId', value);
+        this.$store.dispatch('setWebId', value);
       }
     }
   }
