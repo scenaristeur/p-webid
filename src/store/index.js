@@ -8,6 +8,9 @@ export default new Vuex.Store({
     webId:"must change this webId"
   },
   mutations: {
+    setWebId(state, webId){
+      state.webId = webId
+    }
   },
   actions: {
   },

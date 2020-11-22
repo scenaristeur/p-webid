@@ -1,19 +1,35 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-  LOGIN   webid: {{ webId }}
+    LOGIN   webid: {{ webId }}
+    <button @click="login">Login</button>
   </div>
 </template>
 
 <script>
+import store from '../store'
 
 export default {
+  store,
   name: 'PLogin',
   props: {
     msg: String
   },
   created(){
     this.webId = this.$store.state.webId
+  },
+  methods: {
+    login() {
+      let wi = Math.random()
+      console.log(wi)
+      this.$store.commit('setWebId', wi)
+    }
+  },
+  computed:{
+    webId:{
+      get: function() { return this.$store.state.webId},
+      set: function() {}
+    },
   }
 }
 </script>

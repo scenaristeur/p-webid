@@ -16,6 +16,12 @@ export default {
   },
   created(){
     this.webId = this.$store.state.webId
+  },
+  computed:{
+    webId:{
+      get: function() { return this.$store.state.webId},
+      set: function() {}
+    },
   }
 }
 </script>
