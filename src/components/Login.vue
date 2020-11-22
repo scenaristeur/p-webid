@@ -41,7 +41,7 @@ export default {
   computed:{
     webId:{
       get: function() { return this.$store.state.webId},
-      set: function(value) { this.$store.commit('setWebId', value)}
+      set: function(value) { this.$store.dispatch('setWebId', value)}
     },
   }
 }
