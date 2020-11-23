@@ -1,0 +1,15 @@
+$base-color: pink;
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+button {
+  font: 300% $font-stack;
+  color: $primary-color;
+  background-color: pink;
+}
+
+p {
+  color: lighten($base-color, 10%);
+  color: darken($base-color, 10%);
+  color: transparentize($base-color, 0.5);
+}

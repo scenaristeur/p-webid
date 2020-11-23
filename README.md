@@ -56,3 +56,14 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## dynamic css
+https://www.codegrepper.com/code-examples/whatever/vue+3+conditonal+class+binding
+
+
+### Charte graphique
+https://baseline.is/beta
+https://baseline.is/brand/1048
+
+## styles
+fb : https://webdesign.tutsplus.com/articles/design-and-code-an-integrated-facebook-app-html-css--webdesign-4378
