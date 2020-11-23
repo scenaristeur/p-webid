@@ -28,7 +28,7 @@ export default {
   },
   computed:{
     webId:{
-      get: function() { return this.$store.state.solid.webId},
+      get: function() { return this.$store.state.profile.profile.webId},
       set: function() {}
     },
   }

@@ -5,22 +5,12 @@ const auth = solid.auth
 const fc   = new SolidFileClient(auth)
 
 const state = {
-  webId: null,
-  storage: null,
   folder: {},
   file: null,
   content: null
 }
 
 const mutations = {
-  setWebId(state, webId){
-    console.log("mut",webId)
-    state.webId = webId
-  },
-  setStorage(state, storage){
-    console.log("mut",storage)
-    state.storage = storage
-  },
   setFolder (state, f) {
     //  console.log("folder",f)
     //  console.log(f.links.meta)
@@ -35,18 +25,6 @@ const mutations = {
 }
 
 const actions = {
-  async  setWebId(context, webId){
-    console.log("action",webId)
-    context.commit('setWebId',webId)
-    let storage = null
-    if (webId != null){
-      storage =  await solid.data[webId].storage
-      context.commit('setStorage', `${storage}`)
-    }else{
-      context.commit('setStorage', null)
-    }
-  },
-
   async updateFolder (context, url) {
     let folder = await fc.readFolder(url)
     console.log(folder)

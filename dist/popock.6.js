@@ -1,4 +1,4 @@
-(window["popock_jsonp"] = window["popock_jsonp"] || []).push([[4],{
+(window["popock_jsonp"] = window["popock_jsonp"] || []).push([[6],{
 
 /***/ "4360":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -161,25 +161,24 @@ external_Vue_default.a.use(vuex_esm["a" /* default */]);
 
 /***/ }),
 
-/***/ "f2ee":
+/***/ "e246":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"38b803c4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Login.vue?vue&type=template&id=3468ee9e&shadow
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"login"},[(_vm.webId == null)?_c('b-button',{attrs:{"variant":"success"},on:{"click":_vm.login}},[_vm._v("Login")]):_c('b-button',{attrs:{"variant":"danger"},on:{"click":_vm.logout}},[_vm._v("Logout")])],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"38b803c4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Webid.vue?vue&type=template&id=3e45531c&shadow
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"webid"},[_vm._v(" webId: "+_vm._s(_vm.webId)+" ")])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Login.vue?vue&type=template&id=3468ee9e&shadow
+// CONCATENATED MODULE: ./src/components/Webid.vue?vue&type=template&id=3e45531c&shadow
 
 // EXTERNAL MODULE: ./src/store/index.js + 2 modules
 var store = __webpack_require__("4360");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Login.vue?vue&type=script&lang=js&shadow
-//
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Webid.vue?vue&type=script&lang=js&shadow
 //
 //
 //
@@ -187,37 +186,15 @@ var store = __webpack_require__("4360");
 //
 //
 
-const auth = solid.auth;
-const popUri = 'https://solidcommunity.net/common/popup.html';
-/* harmony default export */ var Loginvue_type_script_lang_js_shadow = ({
+/* harmony default export */ var Webidvue_type_script_lang_js_shadow = ({
   store: store["a" /* default */],
-  name: 'Login',
+  name: 'Webid',
 
-  created() {
+  async created() {
     this.webId = this.$store.state.profile.profile.webId;
-    solid.auth.trackSession(session => {
-      if (!session) this.webId = null;else this.webId = session.webId;
-    });
   },
 
-  methods: {
-    async login() {
-      let session = await auth.currentSession();
-
-      if (!session) {
-        session = await auth.popupLogin({
-          popupUri: popUri
-        });
-      }
-
-      console.log(`Logged in as ${session.webId}.`);
-    },
-
-    logout() {
-      auth.logout();
-    }
-
-  },
+  methods: {},
   watch: {
     webId() {
       console.log("watch webid", this.webId);
@@ -229,18 +206,16 @@ const popUri = 'https://solidcommunity.net/common/popup.html';
       get: function () {
         return this.$store.state.profile.profile.webId;
       },
-      set: function (value) {
-        this.$store.dispatch('profile/setWebId', value);
-      }
+      set: function () {}
     }
   }
 });
-// CONCATENATED MODULE: ./src/components/Login.vue?vue&type=script&lang=js&shadow
- /* harmony default export */ var components_Loginvue_type_script_lang_js_shadow = (Loginvue_type_script_lang_js_shadow); 
+// CONCATENATED MODULE: ./src/components/Webid.vue?vue&type=script&lang=js&shadow
+ /* harmony default export */ var components_Webidvue_type_script_lang_js_shadow = (Webidvue_type_script_lang_js_shadow); 
 // EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 var componentNormalizer = __webpack_require__("2877");
 
-// CONCATENATED MODULE: ./src/components/Login.vue?shadow
+// CONCATENATED MODULE: ./src/components/Webid.vue?shadow
 
 
 
@@ -249,7 +224,7 @@ var componentNormalizer = __webpack_require__("2877");
 /* normalize component */
 
 var component = Object(componentNormalizer["a" /* default */])(
-  components_Loginvue_type_script_lang_js_shadow,
+  components_Webidvue_type_script_lang_js_shadow,
   render,
   staticRenderFns,
   false,
@@ -259,9 +234,9 @@ var component = Object(componentNormalizer["a" /* default */])(
   ,true
 )
 
-/* harmony default export */ var Loginshadow = __webpack_exports__["default"] = (component.exports);
+/* harmony default export */ var Webidshadow = __webpack_exports__["default"] = (component.exports);
 
 /***/ })
 
 }]);
-//# sourceMappingURL=popock.4.js.map
+//# sourceMappingURL=popock.6.js.map

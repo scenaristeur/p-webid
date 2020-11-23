@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import solid from './modules/solid'
+//import solid from './modules/solid'
 import storage from './modules/storage'
+import profile from './modules/profile'
 // import parle from './modules/parle'
 // import chat from './modules/chat'
 // import websocket from './modules/websocket'
@@ -23,5 +24,5 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: { solid, storage /*websocket, parle, chat, crud, inbox, groups, agora, gouvernance, workspaces, semapps, migration*/}
+  modules: { storage, profile /*websocket, parle, chat, crud, inbox, groups, agora, gouvernance, workspaces, semapps, migration*/}
 })

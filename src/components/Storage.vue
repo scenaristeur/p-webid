@@ -170,7 +170,7 @@ export default {
   store,
   name: 'Storage',
   created(){
-    this.storage = this.$store.state.storage.storage
+    this.storage = this.$store.state.profile.storage
     //  this.$route.query.path != undefined ? this.updateFolder(this.$route.query.path) : ""
   },
   data: function () {
@@ -187,10 +187,9 @@ export default {
   },
   methods: {
     selected(item){
-      item.type == "folder" ?   this.$store.dispatch('storage/updateFolder', item.url) : this.$store.dispatch('storage/updateFile', item)
+      item.type == "folder" ? this.$store.dispatch('storage/updateFolder', item.url) : this.$store.dispatch('storage/updateFile', item)
     },
     init_folder(){
-
       this.$bvModal.show("E-folder-modal")
     },
     async createFolder(){
@@ -284,11 +283,11 @@ export default {
   },
   computed:{
     storage:{
-      get: function() { return this.$store.state.storage.storage},
+      get: function() { return this.$store.state.profile.storage},
       set: function() {}
     },
     webId:{
-      get: function() { return this.$store.state.solid.webId},
+      get: function() { return this.$store.state.profile.profile.webId},
       set: function() {}
     },
     folder:{

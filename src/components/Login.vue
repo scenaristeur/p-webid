@@ -14,7 +14,7 @@ export default {
   store,
   name: 'Login',
   created(){
-    this.webId = this.$store.state.webId
+    this.webId = this.$store.state.profile.profile.webId
     solid.auth.trackSession(session => {
       if (!session)
       this.webId = null
@@ -40,8 +40,8 @@ export default {
   },
   computed:{
     webId:{
-      get: function() { return this.$store.state.solid.webId},
-      set: function(value) { this.$store.dispatch('solid/setWebId', value)}
+      get: function() { return this.$store.state.profile.profile.webId},
+      set: function(value) { this.$store.dispatch('profile/setWebId', value)}
     },
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="webid">
-  webId: {{ webId }}
+    webId: {{ webId }}
   </div>
 </template>
 
@@ -10,11 +10,11 @@ import store from '../store'
 export default {
   store,
   name: 'Webid',
-  created(){
-    this.webId = this.$store.state.solid.webId
+  async created(){
+    this.webId = this.$store.state.profile.profile.webId
   },
   methods: {
-    },
+  },
   watch:{
     webId(){
       console.log("watch webid", this.webId)
@@ -22,7 +22,7 @@ export default {
   },
   computed:{
     webId:{
-      get: function() { return this.$store.state.solid.webId},
+      get: function() { return this.$store.state.profile.profile.webId},
       set: function() {}
     },
   }
