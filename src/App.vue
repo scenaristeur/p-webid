@@ -2,9 +2,9 @@
   <div id="app" class="container">
 
     Login: <Login />
+    <Profile />
     Webid: <Webid />
     Storage: <Storage />
-    Profile: <Profile />
     Todo : <Todo />
 
   </div>
@@ -20,7 +20,7 @@ export default {
     'Login': () => import('@/components/Login.vue'),
     'Webid': () => import('@/components/Webid.vue'),
     'Profile': () => import('@/components/Profile.vue'),
-    'Todo': () => import('@/components/Todo.vue'),
+  //  'Todo': () => import('@/components/Todo.vue'),
     'Storage': () => import('@/components/Storage.vue'),
   }
 }

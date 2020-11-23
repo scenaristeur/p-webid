@@ -4,7 +4,7 @@
 
     <hr>
     <b-card
-    title="View"
+    title="Many manners to view the same thing"
     tag="article"
     style="max-width: 20rem;"
     class="mb-2"
@@ -13,7 +13,7 @@
       <b-form-group
       id="fieldset-1"
       description="Select another view"
-      label="Change View"
+      label="Act as a"
       label-for="selector-view">
       <b-form-select id="selector-view" v-model="affichage.view"
       :options="affichage.views"
@@ -26,7 +26,7 @@
     <b-form-group
     id="fieldset-1"
     description="Select another template"
-    label="Change Template"
+    label="in the style of"
     label-for="selector-template">
     <b-form-select id="selector-template" v-model="affichage.template"
     :options="affichage.templates"
@@ -41,7 +41,7 @@
 <!-- View: {{ affichage.view }}
 <div>
 
-  <div class="mt-3">Selected: <br><small>{{ affichage.view }}</small></div>
+<div class="mt-3">Selected: <br><small>{{ affichage.view }}</small></div>
 </div>
 <hr>
 Template: {{ affichage.template}} -->
@@ -63,8 +63,10 @@ export default {
   },
   data: function(){
     return {
-      affichage: {views:["Person", "Organization", "Group", "Project", "Collection","..." ],
-      templates:["FB", "LinkedIn", "Insta", "Tweeter", "..."]},
+      affichage: {
+        views:["Person", "Organization", "Group", "Project", "Collection","..." ],
+        templates:["Solid","FB", "LinkedIn", "Insta", "Tweeter", "..."]
+      },
       //  selected: ""
     }
   },
