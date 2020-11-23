@@ -4,7 +4,7 @@
 
     <hr>
     <b-card
-    title="Many manners to view the same thing"
+    title="Many ways to view the same thing"
     tag="article"
     style="max-width: 20rem;"
     class="mb-2"
