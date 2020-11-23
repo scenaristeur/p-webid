@@ -75,7 +75,6 @@ export default {
       org: "<http://www.w3.org/ns/org#>"
     }
   },
-
   watch:{
     webId(){
       console.log("watch webid", this.webId)
