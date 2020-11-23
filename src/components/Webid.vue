@@ -1,6 +1,6 @@
 <template>
   <div class="webid">
-    webId: {{ webId }}
+    <a v-bind:href="webId" target="_blank">{{ webId }}</a>
   </div>
 </template>
 
@@ -10,11 +10,19 @@ import store from '../store'
 export default {
   store,
   name: 'Webid',
+  // components:{
+  //   'ViewSelector': () => import('@/components/ViewSelector.vue'),
+  // },
   async created(){
     this.webId = this.$store.state.profile.profile.webId
   },
-  methods: {
-  },
+  // data: function(){
+  //   return {
+  //     //  selected: ""
+  //   }
+  // },
+  // methods: {
+  // },
   watch:{
     webId(){
       console.log("watch webid", this.webId)

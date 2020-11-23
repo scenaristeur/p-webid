@@ -1,7 +1,7 @@
 <template>
-  <div class="webid">
+  <div v-bind:style="styleObject">
     Profil: {{ profile.types }}
-    <ViewSelector v-on:selected="viewSelected" />
+    <ViewSelector v-on:viewSelected="viewSelected" @templateSelected="templateSelected" />
 
     <div v-for="p in profile_types" :key="p.name">
       <b-button @click="changeType(p)">{{p.name}}</b-button>
@@ -25,6 +25,10 @@ export default {
   },
   data: function () {
     return {
+      styleObject: {
+        color: 'blue',
+        fontSize: '13px'
+      },
       profile_types : [
         {name: "Organization"},
         {name: "Group"},
@@ -44,29 +48,42 @@ export default {
         this.changeType(t)
       }
     },
-
+    templateSelected(selected){
+      console.log("template",selected)
+    },
     async changeType(e){
-    //  console.log(e.name)
-    //  console.log(this.profile.webId)
+      //  console.log(e.name)
+      //  console.log(this.profile.webId)
       const actor = solid.data[this.profile.webId];
       switch (e.name) {
         case "Organization":
-        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Organization'), namedNode('http://www.w3.org/ns/org#Organization'));
         this.profile.types = ['http://xmlns.com/foaf/0.1/Organization', 'http://www.w3.org/ns/org#Organization']
+        this.styleObject.color = "red"
+        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Organization'), namedNode('http://www.w3.org/ns/org#Organization'));
         break;
         case "Group":
-        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Group'), namedNode('http://www.w3.org/ns/org#Group'));
         this.profile.types = ['http://xmlns.com/foaf/0.1/Group', 'http://www.w3.org/ns/org#Group']
+        this.styleObject.color = "green"
+        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Group'), namedNode('http://www.w3.org/ns/org#Group'));
         break;
         case "Person":
-        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Person'), namedNode('http://schema.org/Person'));
         this.profile.types = ['http://xmlns.com/foaf/0.1/Person', 'http://schema.org/Person']
+        this.styleObject.color = "blue"
+        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Person'), namedNode('http://schema.org/Person'));
         break;
         case "Project":
-        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Project'), namedNode('http://usefulinc.com/ns/doap#Project'));
         this.profile.types = ['http://xmlns.com/foaf/0.1/Project', 'http://usefulinc.com/ns/doap#Project']
+        this.styleObject.color = "grey"
+        await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Project'), namedNode('http://usefulinc.com/ns/doap#Project'));
         break;
+        case "Collection":
+        this.profile.types = ['https://schema.org/Collection', 'https://www.w3.org/ns/activitystreams#Collection']
+        this.styleObject.color = "purple"
+        await actor.type.set(namedNode('https://schema.org/Collection'), namedNode('https://www.w3.org/ns/activitystreams#Collection'));
+        break;
+
         default:
+        console.log("Contact the support, No action known for ",e.name)
 
       }
 
