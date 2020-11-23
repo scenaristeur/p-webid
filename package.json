@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target wc-async --name popock src/components/*.vue",
+    "build": "vue-cli-service build --name popock",
+    "build:wc": "vue-cli-service build --target wc-async --name popock src/components/*.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

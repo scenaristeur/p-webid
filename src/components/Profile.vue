@@ -1,6 +1,7 @@
 <template>
   <div class="webid">
     Profil: {{ profile.types }}
+    <ViewSelector v-on:selected="viewSelected" />
 
     <div v-for="p in profile_types" :key="p.name">
       <b-button @click="changeType(p)">{{p.name}}</b-button>
@@ -16,6 +17,9 @@ import { schema, foaf, doap, org } from "rdf-namespaces";
 export default {
   store,
   name: 'Profile',
+  components:{
+    'ViewSelector': () => import('@/components/ViewSelector.vue'),
+  },
   created(){
     this.profile = this.$store.state.profile.profile
   },
@@ -26,13 +30,24 @@ export default {
         {name: "Group"},
         {name: "Person"},
         {name: "Project"},
+        {name: "Collection"},
+        {name: "..."}
       ]
     }
   },
   methods: {
+    viewSelected(selected) {
+      console.log("YEAH SELECTED !", selected)
+      if (selected != "..."){
+        let t = {}
+        t.name = selected
+        this.changeType(t)
+      }
+    },
+
     async changeType(e){
-      console.log(e.name)
-      console.log(this.profile.webId)
+    //  console.log(e.name)
+    //  console.log(this.profile.webId)
       const actor = solid.data[this.profile.webId];
       switch (e.name) {
         case "Organization":
@@ -55,7 +70,7 @@ export default {
 
       }
 
-    //  this.profile.types = e.classes
+      //  this.profile.types = e.classes
     }
   },
   watch:{
