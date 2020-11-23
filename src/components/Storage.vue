@@ -162,7 +162,7 @@ BASIC | NETWORK |  DATA
 </template>
 
 <script>
-import store from '../store'
+import store from '@/store'
 const auth = solid.auth
 const fc   = new SolidFileClient(auth)
 

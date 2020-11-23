@@ -1,5 +1,6 @@
 <template>
   <div class="webid">
+    Group
     <a v-bind:href="webId" target="_blank">{{ webId }}</a>
   </div>
 </template>
@@ -9,7 +10,7 @@ import store from '@/store'
 
 export default {
   store,
-  name: 'Webid',
+  name: 'GroupView',
   // components:{
   //   'ViewSelector': () => import('@/components/ViewSelector.vue'),
   // },

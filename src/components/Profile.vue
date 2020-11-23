@@ -3,15 +3,20 @@
     Profil: {{ profile.types }}
     <ViewSelector v-on:viewSelected="viewSelected" @templateSelected="templateSelected" />
 
+    <PersonView v-if="shortType == 'Person'" />
+    <GroupView v-if="shortType == 'Group'" />
+    <OrganizationView v-if="shortType == 'Organization'" />
+    <ProjectView v-if="shortType == 'Project'" />
+    <NewView v-if="shortType == 'NewView'" />
 
     <div v-bind:class="[dynamicclass]">
       du texte <button > For test </button>
     </div>
     <div v-bind:class="isActive ? 'conditional-class' : ''">
-    ... one two
-  du texte <button > For test </button>
-  [{{ isActive}}]
-</div>
+      ... one two
+      du texte <button > For test </button>
+      [{{ isActive}}]
+    </div>
     <!-- <div v-for="p in profile_types" :key="p.name">
     <b-button @click="changeType(p)">{{p.name}}</b-button>
   </div> -->
@@ -19,15 +24,22 @@
 </template>
 
 <script>
-import store from '../store'
+import store from '@/store'
 import { namedNode } from "@rdfjs/data-model";
 import { schema, foaf, doap, org } from "rdf-namespaces";
+import ConverterMixin from '@/mixins/ConverterMixin'
 
 export default {
   store,
   name: 'Profile',
+  mixins: [ConverterMixin],
   components:{
     'ViewSelector': () => import('@/components/ViewSelector.vue'),
+    'GroupView': () => import('@/components/views/GroupView.vue'),
+    'OrganizationView': () => import('@/components/views/OrganizationView.vue'),
+    'PersonView': () => import('@/components/views/PersonView.vue'),
+    'ProjectView': () => import('@/components/views/ProjectView.vue'),
+    'NewView': () => import('@/components/views/NewView.vue'),
   },
   created(){
     this.profile = this.$store.state.profile.profile
@@ -40,6 +52,7 @@ export default {
         color: 'blue',
         fontSize: '13px'
       },
+      shortType : "Person"
       // profile_types : [
       //   {name: "Organization"},
       //   {name: "Group"},
@@ -53,6 +66,7 @@ export default {
   methods: {
     viewSelected(selected) {
       console.log("YEAH SELECTED !", selected)
+      this.shortType = selected
       if (selected != "..."){
         let t = {}
         t.name = selected
@@ -62,7 +76,7 @@ export default {
     templateSelected(selected){
       console.log("template",selected)
       // this.dynamic = selected
-        this.isActive = !this.isActive
+      this.isActive = !this.isActive
     },
     async changeType(e){
 
@@ -113,6 +127,13 @@ export default {
   watch:{
     profile(){
       console.log("watch profile", this.profile)
+      console.log("types", this.profile.types)
+      this.shortType = this.localname(this.profile.types.split(',')[0])
+      console.log(this.shortType)
+      let t = {}
+      t.name = this.shortType
+      this.changeType(t)
+
     }
   },
   computed:{
@@ -162,18 +183,18 @@ export default {
 /*  Buttons
 /*-----------------------------------------------------------------------------------*/
 .bg-arctic-water button{
-    background-color:#ECEEF5;
-    border:1px solid #CAD4E7;
-    text-decoration:none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-padding: 2px 3px 2px 2px;
-margin-right:5px;
+  background-color:#ECEEF5;
+  border:1px solid #CAD4E7;
+  text-decoration:none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 2px 3px 2px 2px;
+  margin-right:5px;
 }
 .bg-arctic-water button:hover{
-    border:1px solid #9DACCE;
-    text-decoration:none;
+  border:1px solid #9DACCE;
+  text-decoration:none;
 
 }
 
@@ -188,7 +209,7 @@ margin-right:5px;
 <style lang="scss">
 
 .conditional-class {
-    @import 'rose.scss';
+  @import '@/templates/rose.scss';
 }
 
 </style>

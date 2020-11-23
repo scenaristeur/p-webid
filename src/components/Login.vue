@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import store from '../store'
+import store from '@/store'
 const auth = solid.auth
 const popUri = 'https://solidcommunity.net/common/popup.html'
 
