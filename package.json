@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --name popock",
     "build:wc": "vue-cli-service build --target wc-async --name popock src/components/*.vue",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "git": "npm run build && git add . && git commit -m",
+    "postgit": "git push && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "@rdfjs/data-model": "^1.2.0",

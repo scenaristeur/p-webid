@@ -1,6 +1,9 @@
 # p-webid
 
-### usage
+[DEMO](https://scenaristeur.github.io/p-webid/)
+
+### usage with webcomponents
+(npm run build:wc)
 ```
 <html>
 <head>
@@ -34,6 +37,11 @@ npm install
 ### Compiles and hot-reloads for development
 ```
 npm run serve
+```
+
+### Build in dist folder & publish to gh-pages
+```
+npm run git -- "new version"
 ```
 
 ### Compiles and minifies for production (webcomponents)
