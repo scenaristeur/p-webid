@@ -3,9 +3,9 @@
     Profil: {{ profile.types }}
     <ViewSelector v-on:viewSelected="viewSelected" @templateSelected="templateSelected" />
 
-    <div v-for="p in profile_types" :key="p.name">
+    <!-- <div v-for="p in profile_types" :key="p.name">
       <b-button @click="changeType(p)">{{p.name}}</b-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -29,14 +29,14 @@ export default {
         color: 'blue',
         fontSize: '13px'
       },
-      profile_types : [
-        {name: "Organization"},
-        {name: "Group"},
-        {name: "Person"},
-        {name: "Project"},
-        {name: "Collection"},
-        {name: "..."}
-      ]
+      // profile_types : [
+      //   {name: "Organization"},
+      //   {name: "Group"},
+      //   {name: "Person"},
+      //   {name: "Project"},
+      //   {name: "Collection"},
+      //   {name: "..."}
+      // ]
     }
   },
   methods: {
@@ -67,7 +67,7 @@ export default {
         await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Group'), namedNode('http://www.w3.org/ns/org#Group'));
         break;
         case "Person":
-        this.profile.types = ['http://xmlns.com/foaf/0.1/Person', 'http://schema.org/Person']
+        this.profile.types = ['http://schema.org/Person', 'http://xmlns.com/foaf/0.1/Person']
         this.styleObject.color = "blue"
         await actor.type.set(namedNode('http://xmlns.com/foaf/0.1/Person'), namedNode('http://schema.org/Person'));
         break;
