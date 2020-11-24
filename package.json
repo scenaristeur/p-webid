@@ -11,6 +11,9 @@
     "postgit": "git push && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "@inrupt/solid-client": "^1.1.0",
+    "@inrupt/solid-client-authn-browser": "^1.0.0",
+    "@inrupt/vocab-common-rdf": "^0.6.3",
     "@rdfjs/data-model": "^1.2.0",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.19.0",
@@ -34,7 +37,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
-    "root": false,
+    "root": true,
     "env": {
       "node": true
     },

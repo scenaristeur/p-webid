@@ -14,7 +14,10 @@
     </div>
     <div v-bind:class="isActive ? 'conditional-class' : ''">
       ... one two
-      du texte <button > For test </button>
+      du texte <b-button> For test </b-button>
+      <b-button title="add friend" size="sm" variant="outline-info" to="?url=https://spoggy-test.solidcommunity.net/public/blog/2020-11-03.ttl">test View</b-button>
+
+      <!-- <router-link to="{ name: 'Home', params: { query.url: 'https://spoggy-test.solidcommunity.net/public/blog/2020-11-03.ttl'}}">TEst View</router-link> -->
       [{{ isActive}}]
     </div>
     <!-- <div v-for="p in profile_types" :key="p.name">
@@ -52,7 +55,7 @@ export default {
         color: 'blue',
         fontSize: '13px'
       },
-      shortType : "Person"
+      shortType : null
       // profile_types : [
       //   {name: "Organization"},
       //   {name: "Group"},
