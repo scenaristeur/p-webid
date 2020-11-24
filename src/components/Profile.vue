@@ -20,6 +20,9 @@
       <!-- <router-link to="{ name: 'Home', params: { query.url: 'https://spoggy-test.solidcommunity.net/public/blog/2020-11-03.ttl'}}">TEst View</router-link> -->
       [{{ isActive}}]
     </div>
+    <p>
+      WIKI COLLABORATIF - RECHERCHE WIKIPEDIA PAR MOT CLE puis creation d'article en relation avec ces notions
+    </p>
     <!-- <div v-for="p in profile_types" :key="p.name">
     <b-button @click="changeType(p)">{{p.name}}</b-button>
   </div> -->
