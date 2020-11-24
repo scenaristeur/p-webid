@@ -21,6 +21,7 @@
       <b-card-text v-if="resource.content">
         {{ resource.content }}
       </b-card-text>
+      <b-card-text>[[ predicats list ]]</b-card-text>
       <!-- <router-link to="/attrs">/attrs</router-link> -->
       <b-button :to="'/?url='+thing.internal_url" class="sm" variant="primary">More</b-button>
       <!-- <b-button :to="'/?resource='+thing.internal_url" class="sm" variant="primary">More</b-button> -->

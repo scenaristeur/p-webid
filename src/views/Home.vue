@@ -53,7 +53,10 @@ export default {
       }
     },
     created(){
-      this.$route.query.url != undefined ? this.updateUrl(this.$route.query.url) : ""
+      if (this.$route.query.url != undefined){
+        this.url = this.$route.query.hash != undefined ? this.$route.query.url+this.$route.query.hash : this.$route.query.url
+        this.updateUrl()
+      }
       //  this.login()
     },
     methods: {
@@ -61,9 +64,7 @@ export default {
         console.log(url)
         this.$router.push({ path: '/', query: { url: url } })
       },
-      updateUrl(url){
-        console.log("URL",url)
-        this.url = url
+      updateUrl(){
         this.fetch();
       },
       async login(){
@@ -98,7 +99,7 @@ export default {
         // For example, the user must be someone with Read access to the specified URL.
         const dataset = await getSolidDataset(this.url);
         //console.log(dataset)
-      //  console.log(dataset.quads)
+        //  console.log(dataset.quads)
 
         this.things = getThingAll(dataset, this.url);
         //console.log(this.things)
@@ -116,7 +117,10 @@ export default {
       $route(to, from) {
         // react to route changes...
         console.log(to)
-        to.query.url != undefined ? this.updateUrl(to.query.url) : ""
+        if (to.query.url != undefined){
+          this.url = to.query.hash != undefined ? to.query.url+to.query.hash : to.query.url
+          this.updateUrl()
+        }
       },
       thing(){
 
