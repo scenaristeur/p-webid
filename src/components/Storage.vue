@@ -164,7 +164,7 @@ BASIC | NETWORK |  DATA
 <script>
 import store from '@/store'
 const auth = solid.auth
-const fc   = new SolidFileClient(auth)
+const fc = new SolidFileClient(auth)
 
 export default {
   store,

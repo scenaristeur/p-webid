@@ -29,6 +29,7 @@
       </b-card-group>
       <b-button v-for="t in tests" :key="t.url" @click="test(t.url)" class="sm">show {{ t.name }}</b-button>
     </div>
+    <SolidTrackSession />
   </div>
 </template>
 
@@ -56,6 +57,7 @@ export default {
     'Storage': () => import('@/components/Storage.vue'),
     'Generique': () => import('@/views/Generique.vue'),
     'InvitationView': () => import('@/views/InvitationView.vue'),
+    'SolidTrackSession': () => import('@/components/solid/SolidTrackSession')
 
   },
   data() {
