@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-button variant="success">Join</b-button>
+    <b-button variant="success">Join `{{ name }}`</b-button> |   <b-button variant="outline-success">Create a Group</b-button>
     <b-card-group deck>
       <b-card
       img-src="https://picsum.photos/600/300/?image=25"
