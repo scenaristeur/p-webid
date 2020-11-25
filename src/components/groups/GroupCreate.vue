@@ -20,8 +20,6 @@
       </b-form-group>
     </b-modal>
 
-    <a v-bind:href="url" target="_blank">{{url}}</a>
-
   </div>
 </template>
 

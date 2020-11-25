@@ -4,7 +4,7 @@
     <!-- <b-button variant="success" v-if="webId == null" @click="login">{{ $t('login') }}</b-button>
     <b-button variant="danger" v-else @click="logout">{{ $t('logout') }}</b-button> -->
     <b-button variant="success" v-if="webId == null" @click="login">Login</b-button>
-    <b-button variant="danger" v-else @click="logout">Logout</b-button>
+    <b-button variant="outline-warning" size="sm" v-else @click="logout">Logout</b-button>
   </div>
 </template>
 

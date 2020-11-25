@@ -1,17 +1,14 @@
 <template>
   <div class="webid">
-    <a v-bind:href="webId" target="_blank">{{ webId }}</a>
-    <b-card
-    title="Inbox"
-    tag="article"
-    style="max-width: 40rem;min-width: 20rem;"
-    class="mb-2">
-    <b-card-text>
 
-      Inbox: {{ inbox}}<br>
-    </b-card-text>
-    <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
-  </b-card>  
+    <b-button-group>
+       <b-button variant="outline-primary">
+         <b-icon icon="mailbox"></b-icon> Inbox
+       </b-button>
+       <b-button variant="outline-primary">
+         <b-icon icon="envelope"></b-icon> Send
+       </b-button>
+     </b-button-group>
 </div>
 </template>
 

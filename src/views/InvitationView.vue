@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <b-button variant="success"  @click="join">Ask to join `{{ name }}` group</b-button>
-    <b-button variant="success"  @click="accept">Accept invitation</b-button>
-    <b-button variant="success"  @click="reject">Reject invitation</b-button>
-    <b-button variant="success"  @click="invite">Invite</b-button>
+    <div v-if="!members.includes(webId)">
+      <b-button variant="success"  @click="join">Ask to join `{{ name }}` group</b-button>
+      <b-button variant="success"  @click="accept">Accept invitation</b-button>
+      <b-button variant="success"  @click="reject">Reject invitation</b-button>
+    </div>
+
     <b-button variant="outline-success" @click="newGroup">Create a Group</b-button>
-    <SolidLoginButton />
+
 
     <!-- <div v-if="webId != null">
     <GroupsToolbar :path="invitation"/>
@@ -18,11 +20,7 @@
 <!-- <GroupsToolbar :path="invitation"/> -->
 <GroupCreate v-on:created="initGroups" />
 
-
-
-
-
-<b-card-group deck>
+<b-card-group column>
   <b-card
   img-src="https://picsum.photos/600/300/?image=25"
   img-alt="Image"
@@ -31,20 +29,51 @@
   style="max-width: 40rem;min-width: 20rem;"
   class="mb-2 ">
   <b-card-title>{{ name }}</b-card-title>
-  <b-button variant="success" @click="join">Ask to join Join</b-button>
+  <!-- <InboxWidget v-if="members != undefined && members.includes(webId)" :inbox="inbox" /> -->
+
+
+
   <b-card-text>
     <i>{{ purpose }}</i>
-  </b-card-text>
-  <b-card-text>
-    <b-button :to="'/?invitation='+parent" class="sm" variant="primary">Parent</b-button>
   </b-card-text>
   <small>
     <Date v-if="created" :dateIso="created"/>
     <UserName v-if="maker" :webId="maker" />
     {{ types }}<br>
   </small>
+  <b-button  v-if="!members.includes(webId)" variant="success" @click="join">Ask to join</b-button>
+
+
   <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
+
+<div>
+<Inbox v-if="members.includes(webId)" :inbox="inbox" />
+<b-button v-b-toggle.collapse-members variant="primary"><b-icon icon="people"></b-icon> {{ members.length}}</b-button>
+</div>
+<b-collapse id="collapse-members" class="mt-2">
+  <!-- <b-card> -->
+  <b-card   title="Members"
+  tag="article"
+  style="max-width: 40rem;min-width: 20rem;"
+  class="mb-2"
+  >
+  <div v-if="members.includes(webId)">
+    <b-button variant="success"  @click="invite">Invite</b-button>
+  </div>
+  <b-card-text>
+    <UserName v-for="(m, j) in members" :key="j" :webId="m" />
+  </b-card-text>
+  <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
+  </b-card>
+  <!-- <p class="card-text">Collapse contents Here</p>
+  <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
+  <b-collapse id="collapse-1-inner" class="mt-2">
+  <b-card>Hello!</b-card>
+</b-collapse> -->
+<!-- </b-card> -->
+</b-collapse>
+
 
 
 <b-card
@@ -52,6 +81,7 @@ title="Sub Groups"
 tag="article"
 style="max-width: 40rem;min-width: 20rem;"
 class="mb-2">
+<b-button :to="'/?invitation='+parent" class="sm" variant="outline-success">Super Group</b-button>
 <b-button href="#" variant="outline-success">Add a subgroup</b-button>
 <b-card-text>
   <b-list-group>
@@ -60,22 +90,6 @@ class="mb-2">
 </b-card-text>
 
 </b-card>
-
-<b-card   title="Members"
-img-src="https://picsum.photos/600/300/?image=25"
-img-alt="Image"
-img-top
-tag="article"
-style="max-width: 40rem;min-width: 20rem;"
-class="mb-2"
->
-<b-card-text>
-  <UserName v-for="(m, j) in members" :key="j" :webId="m" />
-</b-card-text>
-<!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
-</b-card>
-
-<InboxWidget v-if="members != undefined && members.includes(webId)" :inbox="inbox" />
 
 <b-card
 title="More"
@@ -89,8 +103,7 @@ class="mb-2">
   Activités : []<br>
   Projets: []<br>
   Competences Skills: []<br>
-  Redevabilités: []<br>
-  Inbox: {{ inbox}}<br>
+  Redevabilités: []
 </b-card-text>
 <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
@@ -130,8 +143,8 @@ import { getSolidDataset,
       'Date': () => import('@/components/basic/Date'),
       //  'GroupsToolbar': () => import('@/components/groups/GroupsToolbar'),
       'GroupCreate': () => import('@/components/groups/GroupCreate'),
-      'SolidLoginButton': () => import('@/components/solid/SolidLoginButton'),
-      'InboxWidget': () => import('@/components/inbox/InboxWidget')
+    //  'InboxWidget': () => import('@/components/inbox/InboxWidget'),
+      'Inbox': () => import('@/components/inbox/Inbox')
 
     },
     async created(){
@@ -145,7 +158,7 @@ import { getSolidDataset,
         name: undefined,
         purpose: undefined,
         subgroups: undefined,
-        members: undefined,
+        members: [],
         inbox: undefined,
         parent: undefined,
         created: undefined,
