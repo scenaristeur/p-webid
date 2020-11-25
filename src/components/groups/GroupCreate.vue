@@ -98,7 +98,7 @@ methods:{
     console.log(this.path)
     // https://www.w3.org/TR/vocab-org/#org:purpose
     //http://ipocore.sourceforge.net/1.2.0/ipo-1.2.0.html#Task
-    let groupDoc =    await createDocument(this.path);
+    let groupDoc = await createDocument(this.path);
     let subj =  groupDoc.addSubject({identifier:"this"})
     subj.addLiteral(vcard.fn, this.name)
     subj.addRef(ldp.inbox, "./"+ttl_name+"/inbox/")
