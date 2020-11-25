@@ -1,13 +1,24 @@
 <template>
   <div class="home">
-    <div v-if="url == undefined">
+    <div v-if="invitation != undefined">
+      <InvitationView :invitation="invitation" />
+      {{ invitation }}
+    </div>
+    <div v-else-if="url == undefined">
       <img alt="Vue logo" src="../assets/logo.png">
+<hr>
+
+      <router-link to="/?invitation=https://spoggy-test7.solidcommunity.net/public/gouvernance/groups/Les_Grapheurs_Fous.ttl">Invitation Grapheurs Fous</router-link> | 
+      <router-link to="/?invitation=Choose the groupe where you want to invite someone or Create a Group">Inviter</router-link>
+<hr>
       Login: <Login />
       <Profile />
       Webid: <Webid />
       Storage: <Storage />
       Todo : <Todo />
+
     </div>
+
     <div v-else>
       url : {{ url }}
       <b-card-group columns>
@@ -41,11 +52,15 @@ export default {
     'Todo': () => import('@/components/Todo.vue'),
     'Storage': () => import('@/components/Storage.vue'),
     'Generique': () => import('@/views/Generique.vue'),
+    'InvitationView': () => import('@/views/InvitationView.vue'),
+
   },
   data() {
     return {
       url: undefined,
+      invitation: undefined,
       things: [],
+      group_things: [],
       tests: [
         {name: "profile", url: 'https://spoggy-test7.solidcommunity.net/profile/card#me'},
         {name: "blog", url: 'https://spoggy-test.solidcommunity.net/public/blog/2020-11-03.ttl'},
@@ -53,19 +68,51 @@ export default {
       }
     },
     created(){
-      if (this.$route.query.url != undefined){
-        this.url = this.$route.query.hash != undefined ? this.$route.query.url+this.$route.query.hash : this.$route.query.url
-        this.updateUrl()
-      }
+      this.update()
       //  this.login()
     },
     methods: {
+      update(){
+        if (this.$route.query.url != undefined){
+          this.url = this.$route.query.hash != undefined ? this.$route.query.url+this.$route.query.hash : this.$route.query.url
+
+          this.updateUrl()
+        }else{
+          this.url = undefined
+        }
+        console.log(this.$route.query)
+        if (this.$route.query.invitation != undefined){
+          this.invitation = this.$route.query.hash != undefined ? this.$route.query.invitation+this.$route.query.hash : this.$route.query.invitation
+
+          console.log(this.invitation)
+          //  this.updateInvitation()
+        }else{
+            this.invitation = undefined
+        }
+      },
       test(url) {
         console.log(url)
         this.$router.push({ path: '/', query: { url: url } })
       },
-      updateUrl(){
-        this.fetch();
+      async updateUrl() {
+        // 4. Make authenticated requests by passing `session.fetch` to solid-client functions.
+        // The user must have logged in as someone with the appropriate access to the specified URL.
+        //let session = this.session
+        //console.log(session)
+        // For example, the user must be someone with Read access to the specified URL.
+        const dataset = await getSolidDataset(this.url);
+        //console.log(dataset)
+        //  console.log(dataset.quads)
+
+        this.things = getThingAll(dataset, this.url);
+        //console.log(this.things)
+
+        // For example, the user must be someone with Write access to the specified URL.
+        // const savedSolidDataset = await saveSolidDatasetAt(
+        //   "https://docs-example.inrupt.net/profile/card",
+        //   myChangedDataset, {
+        //   fetch: this.session.fetch
+        // });
       },
       async login(){
         // 1. Build a session
@@ -91,41 +138,14 @@ export default {
           });
         }
       },
-      async fetch() {
-        // 4. Make authenticated requests by passing `session.fetch` to solid-client functions.
-        // The user must have logged in as someone with the appropriate access to the specified URL.
-        //let session = this.session
-        //console.log(session)
-        // For example, the user must be someone with Read access to the specified URL.
-        const dataset = await getSolidDataset(this.url);
-        //console.log(dataset)
-        //  console.log(dataset.quads)
-
-        this.things = getThingAll(dataset, this.url);
-        //console.log(this.things)
-
-        // For example, the user must be someone with Write access to the specified URL.
-        // const savedSolidDataset = await saveSolidDatasetAt(
-        //   "https://docs-example.inrupt.net/profile/card",
-        //   myChangedDataset, {
-        //   fetch: this.session.fetch
-        // });
-      }
 
     },
     watch: {
       $route(to, from) {
-        // react to route changes...
-        console.log(to)
-        if (to.query.url != undefined){
-          this.url = to.query.hash != undefined ? to.query.url+to.query.hash : to.query.url
-          this.updateUrl()
-        }
+        this.update()
       },
       thing(){
-
-        this.fetch()
-
+        this.updateUrl()
       }
     }
   }
