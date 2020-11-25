@@ -1,7 +1,11 @@
 import { fetchDocument } from 'tripledoc';
 import { vcard } from 'rdf-namespaces'
+import AffichageMixin from '@/mixins/AffichageMixin.js'
+import  {saveFileInContainer, getSourceUrl } from "@inrupt/solid-client";
+
 
 export default {
+  mixins: [AffichageMixin],
   methods: {
     async getGroup(url) {
       let group = {members: [], subgroups: []}
@@ -21,12 +25,47 @@ export default {
 
       return group
     },
-    makeToast(title, content,variant = null) {
-      this.$bvToast.toast(content , {
-        title: title,
-        variant: variant,
-        solid: true
-      })
+    async join(){
+      console.log("join to create inbox folder with authenticated agent as submitter")
+      let offer = `@prefix :      <#> .
+      @prefix as:    <https://www.w3.org/ns/activitystreams#> .
+
+      :it
+      a as:Offer ;
+      as:actor <${this.webId}> ;
+      as:object :join ;
+      as:summary "${this.webId} asks to join the group" ;
+      as:target <${this.invitation}> .
+
+      :join
+      a as:Join ;
+      as:actor <${this.webId}> ;
+      as:object <${this.invitation}> ;
+      as:summary "${this.webId} joins group" .
+      `
+      try{
+        let sentFile = await saveFileInContainer(
+          this.inbox,
+          new Blob([offer], { type: "text/turtle" }),
+          //    { slug: "new-file.ttl" }
+        );
+        this.makeToast("Join request sent", "A request has been sent to group Inbox", "success")
+      }catch(e){
+        //console.log(e)
+        this.makeToast("Join request", "Can not send a request to the Group Inbox"+e, "danger")
+      }
+    },
+    accept(){
+      console.log("todo accept")
+      this.makeToast("Todo", "not implemented yet")
+    },
+    invite(){
+      console.log("todo invite")
+      this.makeToast("Todo", "not implemented yet")
+    },
+    reject(){
+      console.log("todo reject")
+      this.makeToast("Todo", "not implemented yet")
     }
   }
 

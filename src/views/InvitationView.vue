@@ -2,7 +2,7 @@
   <div class="container">
     <b-button variant="success"  @click="join">Ask to join `{{ name }}` group</b-button>
     <b-button variant="success"  @click="accept">Accept invitation</b-button>
-    <b-button variant="success"  @click="deny">Deny invitation</b-button>
+    <b-button variant="success"  @click="reject">Reject invitation</b-button>
     <b-button variant="success"  @click="invite">Invite</b-button>
     <b-button variant="outline-success" @click="newGroup">Create a Group</b-button>
     <SolidLoginButton />
@@ -28,7 +28,7 @@
   img-alt="Image"
   img-top
   tag="article"
-  style="max-width: 20rem;"
+  style="max-width: 40rem;min-width: 20rem;"
   class="mb-2 ">
   <b-card-title>{{ name }}</b-card-title>
   <b-button variant="success" @click="join">Ask to join Join</b-button>
@@ -50,7 +50,7 @@
 <b-card
 title="Sub Groups"
 tag="article"
-style="max-width: 20rem;"
+style="max-width: 40rem;min-width: 20rem;"
 class="mb-2">
 <b-button href="#" variant="outline-success">Add a subgroup</b-button>
 <b-card-text>
@@ -66,7 +66,7 @@ img-src="https://picsum.photos/600/300/?image=25"
 img-alt="Image"
 img-top
 tag="article"
-style="max-width: 20rem;"
+style="max-width: 40rem;min-width: 20rem;"
 class="mb-2"
 >
 <b-card-text>
@@ -75,13 +75,15 @@ class="mb-2"
 <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
 
+<InboxWidget v-if="members != undefined && members.includes(webId)" :inbox="inbox" />
+
 <b-card
 title="More"
 img-src="https://picsum.photos/600/300/?image=25"
 img-alt="Image"
 img-top
 tag="article"
-style="max-width: 20rem;"
+style="max-width: 40rem;min-width: 20rem;"
 class="mb-2">
 <b-card-text>
   Activités : []<br>
@@ -92,6 +94,7 @@ class="mb-2">
 </b-card-text>
 <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
+
 </b-card-group>
 
 Invitation : {{ this.invitation }}
@@ -112,28 +115,29 @@ import { getSolidDataset,
   getThing,
   getStringNoLocale,
   getUrlAll,
-  getUrl,
-  saveFileInContainer, getSourceUrl } from "@inrupt/solid-client";
+  getUrl } from "@inrupt/solid-client";
 
   import { FOAF, VCARD, DCTERMS, RDF } from "@inrupt/vocab-common-rdf";
+  import GroupMixin from '@/mixins/GroupMixin.js'
 
   export default {
     store,
     name: 'InvitationView',
     props: ['invitation'],
+    mixins: [GroupMixin],
     components:{
       'UserName': () => import('@/components/basic/UserName'),
       'Date': () => import('@/components/basic/Date'),
       //  'GroupsToolbar': () => import('@/components/groups/GroupsToolbar'),
       'GroupCreate': () => import('@/components/groups/GroupCreate'),
-      'SolidLoginButton': () => import('@/components/solid/SolidLoginButton')
+      'SolidLoginButton': () => import('@/components/solid/SolidLoginButton'),
+      'InboxWidget': () => import('@/components/inbox/InboxWidget')
 
     },
     async created(){
       this.$store.state.profile
       this.webId = this.$store.state.profile.profile.webId
       this.updateInvitation()
-
     },
     data: function(){
       return {
@@ -150,37 +154,6 @@ import { getSolidDataset,
       }
     },
     methods: {
-      async join(){
-        console.log("join to create inbox folder with authenticated agent as submitter")
-        let offer = `@prefix :      <#> .
-        @prefix as:    <https://www.w3.org/ns/activitystreams#> .
-
-        :it
-        a as:Offer ;
-        as:actor <${this.webId}> ;
-        as:object :join ;
-        as:summary "${this.webId} asks to join the group" ;
-        as:target <${this.invitation}> .
-
-        :join
-        a as:Join ;
-        as:actor <${this.webId}> ;
-        as:object <${this.invitation}> ;
-        as:summary "${this.webId} joins group" .
-        `
-        console.log(offer)
-
-        let sentFile = await saveFileInContainer(
-          this.inbox,
-          new Blob([offer], { type: "text/turtle" }),
-          //    { slug: "new-file.ttl" }
-        );
-
-        console.log(`File saved at ${getSourceUrl(sentFile)}`);
-
-
-      },
-
       newGroup(){
         this.$bvModal.show("new-group-modal")
       },
