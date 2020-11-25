@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-button variant="success">Join `{{ name }}`</b-button> |   <b-button variant="outline-success">Create a Group</b-button>
+    <b-button variant="success">Join `{{ name }}` group</b-button> <b-button variant="outline-success">Create a Group</b-button>
     <b-card-group deck>
       <b-card
       img-src="https://picsum.photos/600/300/?image=25"
@@ -55,7 +55,7 @@
 </b-card>
 
 <b-card
-title="Inbox"
+title="More"
 img-src="https://picsum.photos/600/300/?image=25"
 img-alt="Image"
 img-top
@@ -63,7 +63,11 @@ tag="article"
 style="max-width: 20rem;"
 class="mb-2">
 <b-card-text>
-  {{ inbox}}<br>
+  Activités : []<br>
+  Projets: []<br>
+  Competences Skills: []<br>
+  Redevabilités: []<br>
+  Inbox: {{ inbox}}<br>
 </b-card-text>
 <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>

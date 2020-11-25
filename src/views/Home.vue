@@ -8,7 +8,10 @@
       <img alt="Vue logo" src="../assets/logo.png">
 <hr>
 
-      <router-link to="/?invitation=https://spoggy-test7.solidcommunity.net/public/gouvernance/groups/Les_Grapheurs_Fous.ttl">Invitation Grapheurs Fous</router-link> | 
+      <router-link to="/?invitation=https://spoggy-test7.solidcommunity.net/public/gouvernance/groups/Les_Grapheurs_Fous.ttl">Invitation Grapheurs Fous</router-link> |
+      <router-link to="/?invitation=https://spoggy-test7.solidcommunity.net/public/gouvernance/groups/Solid_Users.ttl#this">Invitation Solid Users Group</router-link> |
+
+
       <router-link to="/?invitation=Choose the groupe where you want to invite someone or Create a Group">Inviter</router-link>
 <hr>
       Login: <Login />
