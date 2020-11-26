@@ -1,6 +1,6 @@
 <template>
   <div class="webid">
-  {{ name }}
+    {{ name }}
   </div>
 </template>
 
@@ -11,9 +11,9 @@ import { getSolidDataset,
   getThingAll,
   //getThing,
   getStringNoLocale,
-     } from "@inrupt/solid-client";
+} from "@inrupt/solid-client";
 
-  import { VCARD } from "@inrupt/vocab-common-rdf";
+import { VCARD } from "@inrupt/vocab-common-rdf";
 
 export default {
   store,
@@ -22,19 +22,25 @@ export default {
 
   async created(){
     this.webId = this.$store.state.profile.profile.webId
-    const dataset = await getSolidDataset(this.item);
-    this.things = getThingAll(dataset, this.item);
-    this.thing = this.things[0]
-    this.name = getStringNoLocale(this.thing, VCARD.fn);
+    this.update()
   },
   data: function(){
     return {
-       name: ""
+      name: ""
     }
   },
-  // methods: {
-  // },
+  methods: {
+    async update(){
+      const dataset = await getSolidDataset(this.item);
+      this.things = getThingAll(dataset, this.item);
+      this.thing = this.things[0]
+      this.name = getStringNoLocale(this.thing, VCARD.fn);
+    }
+  },
   watch:{
+    item(){
+      this.update()
+    },
     webId(){
       console.log("watch webid", this.webId)
     }
