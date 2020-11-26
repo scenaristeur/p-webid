@@ -6,14 +6,14 @@
     </div>
     <div v-else-if="url == undefined">
       <img alt="Vue logo" src="../assets/logo.png">
-<hr>
+      <hr>
 
       <router-link to="/?invitation=https://spoggy-test7.solidcommunity.net/public/gouvernance/groups/Les_Grapheurs_Fous.ttl">Invitation Grapheurs Fous</router-link> |
       <router-link to="/?invitation=https://spoggy-test7.solidcommunity.net/public/gouvernance/groups/Solid_Users.ttl#this">Invitation Solid Users Group</router-link> |
 
 
       <router-link to="/?invitation=Choose the groupe where you want to invite someone or Create a Group">Inviter</router-link>
-<hr>
+      <hr>
       Login: <Login />
       <Profile />
       Webid: <Webid />
@@ -29,6 +29,24 @@
       </b-card-group>
       <b-button v-for="t in tests" :key="t.url" @click="test(t.url)" class="sm">show {{ t.name }}</b-button>
     </div>
+
+    ADD AWESOME-VUJS KANBAN
+
+
+    <div v-html='$italicHTML("test plugin")'>
+    </div>
+
+    <div v-html='$boldHTML("test plugin")'>
+    </div>
+
+    <!-- Mustache Interpolation -->
+    {{ "blallnnklalnlknz rikjlmkfdqs eimik" | preview }} 
+
+    <!-- using a v-bind: -->
+    <!-- <div :class='rawID | formatID' /> -->
+
+    <input type='text' placeholder='Directive from plugin...' v-focus />
+
   </div>
 </template>
 
@@ -89,7 +107,7 @@ export default {
           console.log(this.invitation)
           //  this.updateInvitation()
         }else{
-            this.invitation = undefined
+          this.invitation = undefined
         }
       },
       test(url) {

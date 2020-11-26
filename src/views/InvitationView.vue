@@ -47,10 +47,25 @@
   <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
 
-<div>
-<Inbox v-if="members.includes(webId)" :inbox="inbox" />
-<b-button v-b-toggle.collapse-members variant="primary"><b-icon icon="people"></b-icon> {{ members.length}}</b-button>
-</div>
+<b-card
+title="Sub Groups"
+tag="article"
+style="max-width: 40rem;min-width: 20rem;"
+class="mb-2">
+<b-button v-if="invitation != parent" :to="'/?invitation='+parent" class="sm" variant="outline-success">Super Group ({{parent | localname}})</b-button>
+<b-button href="#" variant="outline-success">Add a subgroup</b-button>
+<b-card-text>
+  <b-list-group>
+    <b-list-group-item v-for="(g, i) in subgroups" :key="'g_'+i" :to="'/?invitation='+g">
+
+      <Item :item="g" />
+    </b-list-group-item>
+  </b-list-group>
+</b-card-text>
+
+</b-card>
+
+
 <b-collapse id="collapse-members" class="mt-2">
   <!-- <b-card> -->
   <b-card   title="Members"
@@ -65,27 +80,34 @@
     <UserName v-for="(m, j) in members" :key="j" :webId="m" />
   </b-card-text>
   <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
-  </b-card>
-  <!-- <p class="card-text">Collapse contents Here</p>
-  <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
-  <b-collapse id="collapse-1-inner" class="mt-2">
-  <b-card>Hello!</b-card>
+</b-card>
+<!-- <p class="card-text">Collapse contents Here</p>
+<b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
+<b-collapse id="collapse-1-inner" class="mt-2">
+<b-card>Hello!</b-card>
 </b-collapse> -->
 <!-- </b-card> -->
 </b-collapse>
 
+<div>
+    <b-button v-b-toggle.collapse-members variant="primary"><b-icon icon="people"></b-icon> {{ members.length}}</b-button>
+  <Inbox v-if="members.includes(webId)" :inbox="inbox" />
+
+</div>
+
+
+
 
 
 <b-card
-title="Sub Groups"
+title="Domaines"
 tag="article"
 style="max-width: 40rem;min-width: 20rem;"
 class="mb-2">
-<b-button :to="'/?invitation='+parent" class="sm" variant="outline-success">Super Group</b-button>
-<b-button href="#" variant="outline-success">Add a subgroup</b-button>
+<b-button href="#" variant="outline-success">Add a domain</b-button>
 <b-card-text>
   <b-list-group>
-    <b-list-group-item v-for="(g, i) in subgroups" :key="'g_'+i" :to="'/?invitation='+g">{{ g }}</b-list-group-item>
+    <b-list-group-item v-for="(d, i) in domains" :key="'d_'+i" :to="'/?url'+d">{{ d }}</b-list-group-item>
   </b-list-group>
 </b-card-text>
 
@@ -143,8 +165,9 @@ import { getSolidDataset,
       'Date': () => import('@/components/basic/Date'),
       //  'GroupsToolbar': () => import('@/components/groups/GroupsToolbar'),
       'GroupCreate': () => import('@/components/groups/GroupCreate'),
-    //  'InboxWidget': () => import('@/components/inbox/InboxWidget'),
-      'Inbox': () => import('@/components/inbox/Inbox')
+      //  'InboxWidget': () => import('@/components/inbox/InboxWidget'),
+      'Inbox': () => import('@/components/inbox/Inbox'),
+      'Item': () => import('@/components/basic/Item')
 
     },
     async created(){
@@ -158,6 +181,7 @@ import { getSolidDataset,
         name: undefined,
         purpose: undefined,
         subgroups: undefined,
+        domains: [],
         members: [],
         inbox: undefined,
         parent: undefined,
@@ -183,6 +207,16 @@ import { getSolidDataset,
         this.parent = getUrl(this.thing, 'http://www.w3.org/ns/org#subOrganizationOf');
         this.created = getStringNoLocale(this.thing, DCTERMS.created);
         this.maker = getUrl(this.thing, FOAF.maker);
+
+      },
+      async getName(s){
+        const s_dataset = await getSolidDataset(s);
+        let things = getThingAll(s_dataset, );
+        let thing = things[0]
+        let name = getStringNoLocale(thing, VCARD.fn);
+        let sg = {url:s, name: name}
+        console.log(sg)
+        return sg
       },
       async  initGroups(url = this.url){
         console.log(url)
