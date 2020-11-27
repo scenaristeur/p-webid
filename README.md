@@ -71,3 +71,50 @@ fb : https://webdesign.tutsplus.com/articles/design-and-code-an-integrated-faceb
 
 ## next ml5
 https://www.youtube.com/watch?v=FYgYyq-xqAw
+
+## loading external script
+https://levelup.gitconnected.com/how-to-load-external-javascript-files-from-the-browser-console-8eb97f7db778
+
+---------------------
+
+document.write(`<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>`)
+
+---------------------
+
+const script = document.createElement("script")
+script.type = "text/javascript"
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"
+document.head.appendChild(script)
+eval(script)
+
+---------------------
+
+fetch("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js")
+  .then((response) => response.text())
+  .then((text) => eval(text))
+  .then(() => {
+    /* Now you can use the script */
+  })
+
+
+---------------------
+
+  const loadScript = async (url) {
+    const response = await fetch(url)
+    const script = await response.text()
+    eval(script)
+  }
+
+  const scriptUrl = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"
+  loadScript(scriptUrl)
+
+  ---------------------
+A saisir en deux fois
+
+// <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+const scriptSource = "https://code.jquery.com/jquery-3.5.0.js"
+document.write(`<script src="${scriptSource}" type="text/javascript"></script>`)
+------
+// I would use jQuery, but I'm looking at blank page...
+$("div").css("border", "3px dotted orange") // TypeError: $(...) is null
+---------------------
