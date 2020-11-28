@@ -15,6 +15,7 @@
       <router-link to="/?invitation=Choose the groupe where you want to invite someone or Create a Group">Inviter</router-link>
       <hr>
       Login: <Login />
+  
       <Profile />
       Webid: <Webid />
       Storage: <Storage />

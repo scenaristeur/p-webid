@@ -47,6 +47,8 @@
   <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
 
+
+
 <b-card
 title="Sub Groups"
 tag="article"
@@ -64,7 +66,6 @@ class="mb-2">
 </b-card-text>
 
 </b-card>
-
 
 <b-collapse id="collapse-members" class="mt-2">
   <!-- <b-card> -->
@@ -89,14 +90,19 @@ class="mb-2">
 <!-- </b-card> -->
 </b-collapse>
 
+
+
+
+
+
 <div>
-    <b-button v-b-toggle.collapse-members variant="primary"><b-icon icon="people"></b-icon> {{ members.length}}</b-button>
+  <b-button v-b-toggle.collapse-members variant="primary"><b-icon icon="people"></b-icon> {{ members.length}}</b-button>
   <Inbox v-if="members.includes(webId)" :inbox="inbox" />
 
 </div>
 
 
-
+<Cockpit :url="invitation"/>
 
 
 <b-card
@@ -167,7 +173,9 @@ import { getSolidDataset,
       'GroupCreate': () => import('@/components/groups/GroupCreate'),
       //  'InboxWidget': () => import('@/components/inbox/InboxWidget'),
       'Inbox': () => import('@/components/inbox/Inbox'),
-      'Item': () => import('@/components/basic/Item')
+      'Item': () => import('@/components/basic/Item'),
+      'Cockpit': () => import('@/components/gouvernance/Cockpit.vue'),
+
 
     },
     async created(){
