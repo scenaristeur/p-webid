@@ -6,7 +6,8 @@
       <b-button variant="success"  @click="reject">Reject invitation</b-button>
     </div>
 
-    <b-button variant="outline-success" @click="newGroup">Create a Group</b-button>
+    <!-- <b-button variant="outline-success" @click="newGroup" disabled>Create a Group</b-button> -->
+  <b-button variant="outline-success" href="https://scenaristeur.github.io/solid-vue-panes/groups" target="_blank" >Create a Group with poPock</b-button>
 
 
     <!-- <div v-if="webId != null">
@@ -91,10 +92,6 @@ class="mb-2">
 </b-collapse>
 
 
-
-
-
-
 <div>
   <b-button v-b-toggle.collapse-members variant="primary"><b-icon icon="people"></b-icon> {{ members.length}}</b-button>
   <Inbox v-if="members.includes(webId)" :inbox="inbox" />
@@ -175,8 +172,6 @@ import { getSolidDataset,
       'Inbox': () => import('@/components/inbox/Inbox'),
       'Item': () => import('@/components/basic/Item'),
       'Cockpit': () => import('@/components/gouvernance/Cockpit.vue'),
-
-
     },
     async created(){
       this.$store.state.profile
@@ -199,9 +194,9 @@ import { getSolidDataset,
       }
     },
     methods: {
-      newGroup(){
-        this.$bvModal.show("new-group-modal")
-      },
+      // newGroup(){
+      //   this.$bvModal.show("new-group-modal")
+      // },
       async updateInvitation(){
         const dataset = await getSolidDataset(this.invitation);
         this.things = getThingAll(dataset, this.invitation);

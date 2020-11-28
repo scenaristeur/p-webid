@@ -20,10 +20,17 @@
             </b-dropdown>
 
           </template>
-          <div class="scroll">Here is the <b>{{b.name}}</b> for {{ url }}.<br>
+          <div class="scroll">
 
-            {{b.description}} <br>
-[[ voir spoggy-group pour l'ajout , checkbox]]
+            <div class="empty">
+              <b>{{b.name}}</b> for {{ url }}.<br>
+              <div v-html="b.description"> </div>
+
+            </div>
+            <div v-if="b.type=='Wiki'">
+              <Wiki :url="invitation"/>
+              </div>
+
           </div>
         </b-tab>
       </b-tabs>
@@ -79,6 +86,8 @@ export default {
   components:{
     //  'Generique': () => import('@/components/gouvernance/Generique.vue'),
     'Projets': () => import('@/components/gouvernance/Projets.vue'),
+    'Wiki': () => import('@/components/gouvernance/Wiki.vue'),
+
   },
   props:['url'],
   async created(){
@@ -87,30 +96,33 @@ export default {
   data: function(){
     return {
       blocks: [{type: "Action", name: "Mes prochaines actions"},
-      {type: "Checklist", name: "CheckList", description: "Ce dont on a besoin pour terminer une action ou un projet"},
+      {type: "Checklist", name: "CheckList", description: "Ce dont on a besoin pour terminer une action ou un projet. <br>   [[ voir spoggy-group pour l'ajout , checkbox]]"},
       {type: "Indicateur", name: "Indicateurs"},
-      {type: "Reunion", name: "Réunions"}],
-    }
-  },
-  methods: {
-    paneChange(p){
-      console.log(p)
-    },
-    add(b){
-      console.log("block", b)
-    }
-  },
-  watch:{
-    webId(){
-      console.log("watch webid", this.webId)
-    }
-  },
-  computed:{
-    webId:{
-      get: function() { return this.$store.state.profile.profile.webId},
-      set: function() {}
-    },
+      {type: "Reunion", name: "Réunions"},
+      {type: "Wiki", name: "Wiki", description: "La fonctionnalité de création d'article sera bientôt opérationnelle. En attendant, vous pouvez utiliser <a href='https://scenaristeur.github.io/solid-vue-panes/post' target='_blank'>Popock post</a> et notamment l'outil Dokieli" }
+
+    ],
   }
+},
+methods: {
+  paneChange(p){
+    console.log(p)
+  },
+  add(b){
+    console.log("block", b)
+  }
+},
+watch:{
+  webId(){
+    console.log("watch webid", this.webId)
+  }
+},
+computed:{
+  webId:{
+    get: function() { return this.$store.state.profile.profile.webId},
+    set: function() {}
+  },
+}
 }
 </script>
 <style>
