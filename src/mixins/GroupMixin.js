@@ -2,6 +2,9 @@ import { fetchDocument } from 'tripledoc';
 import { vcard } from 'rdf-namespaces'
 import AffichageMixin from '@/mixins/AffichageMixin.js'
 import  {saveFileInContainer, getSourceUrl } from "@inrupt/solid-client";
+import { namedNode } from '@rdfjs/data-model'
+const auth = solid.auth
+const fc = new SolidFileClient(auth)
 
 
 export default {
@@ -37,6 +40,7 @@ export default {
         console.log(`${name}`, this.url, ttl_name)
         storage = [path, ttl_name, ""].join('/')
         console.log(storage)
+        await !fc.itemExists(this.storage) ? await fc.createFolder(this.storage) : ""
         await solid.data[res]['http://www.w3.org/ns/pim/space#storage'].set(namedNode(storage))
       }
       return storage

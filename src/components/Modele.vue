@@ -36,3 +36,8 @@ export default {
   }
 }
 </script>
+<style>
+.color-primary {
+  color: #00fac4;
+}
+</style>

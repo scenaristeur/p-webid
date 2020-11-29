@@ -20,17 +20,12 @@
             </b-dropdown>
 
           </template>
-          <div class="scroll">
-
-            <div class="empty">
-              <b>{{b.name}}</b> for {{ url }}.<br>
-              <div v-html="b.description"> </div>
-
-            </div>
+          <div class="scroll">      
             <div v-if="b.type=='Wiki'">
-              <Wiki :url="invitation"/>
-              </div>
-
+              <Wiki :url="url"/>
+            </div>
+            <div v-else v-html="b.description"> </div>
+            <b>{{b.name}}</b> for {{ url }}.<br>
           </div>
         </b-tab>
       </b-tabs>
