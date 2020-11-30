@@ -33,7 +33,7 @@
   <b-button href="#" variant="primary">Go somewhere</b-button>
 </b-card>
 </div> -->
-<a v-bind:href="webId" target="_blank">{{ webId }}</a>
+<!-- <a v-bind:href="webId" target="_blank">{{ webId }}</a> -->
 </div>
 </template>
 

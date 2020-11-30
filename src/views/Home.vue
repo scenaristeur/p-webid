@@ -2,7 +2,7 @@
   <div class="home">
     <div v-if="invitation != undefined">
       <InvitationView :invitation="invitation" />
-      {{ invitation }}
+      <!-- {{ invitation }} -->
     </div>
     <div v-else-if="url == undefined">
       <img alt="Vue logo" src="../assets/logo.png">
@@ -15,7 +15,7 @@
       <router-link to="/?invitation=Choose the groupe where you want to invite someone or Create a Group">Inviter</router-link>
       <hr>
       Login: <Login />
-  
+
       <Profile />
       Webid: <Webid />
       Storage: <Storage />
@@ -24,31 +24,32 @@
     </div>
 
     <div v-else>
-      url : {{ url }}
+      <!-- url : {{ url }} -->
       <b-card-group columns>
         <Generique v-for="thing in things " :key="thing.internal_url" :thing="thing" />
       </b-card-group>
       <b-button v-for="t in tests" :key="t.url" @click="test(t.url)" class="sm">show {{ t.name }}</b-button>
     </div>
 
-    ADD AWESOME-VUJS KANBAN
+    <!-- ADD AWESOME-VUJS KANBAN
 
 
     <div v-html='$italicHTML("test plugin")'>
-    </div>
-
-    <div v-html='$boldHTML("test plugin")'>
-    </div>
-
-    <!-- Mustache Interpolation -->
-    {{ "blallnnklalnlknz rikjlmkfdqs eimik" | preview }}
-
-    <!-- using a v-bind: -->
-    <!-- <div :class='rawID | formatID' /> -->
-
-    <input type='text' placeholder='Directive from plugin...' v-focus />
-
   </div>
+
+  <div v-html='$boldHTML("test plugin")'>
+</div>
+-->
+
+<!-- Mustache Interpolation -->
+<!-- {{ "blallnnklalnlknz rikjlmkfdqs eimik" | preview }} -->
+
+<!-- using a v-bind: -->
+<!-- <div :class='rawID | formatID' /> -->
+
+<!-- <input type='text' placeholder='Directive from plugin...' v-focus /> -->
+
+</div>
 </template>
 
 <script>

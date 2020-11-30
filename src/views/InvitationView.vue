@@ -135,13 +135,13 @@ class="mb-2">
 
 </b-card-group>
 
-Invitation : {{ this.invitation }}
+<!-- Invitation : {{ this.invitation }}
 <hr>
 {{ things }}
 <hr>
 
 
-<a v-bind:href="webId" target="_blank">{{ webId }}</a>
+<a v-bind:href="webId" target="_blank">{{ webId }}</a> -->
 </div>
 </template>
 

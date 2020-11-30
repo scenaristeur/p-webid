@@ -71,7 +71,7 @@ With supporting text below as a natural lead-in to additional content.
 <b-card-group deck>
 <Generique v-for="b in blocks" :key="'g_'+b.name" :block="b" />
 </b-card-group>-->
-<a v-bind:href="webId" target="_blank">{{ webId }}</a>
+<!-- <a v-bind:href="webId" target="_blank">{{ webId }}</a> -->
 </div>
 </template>
 
