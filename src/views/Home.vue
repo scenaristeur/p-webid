@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div v-if="invitation != undefined">
+      <Group :url="invitation" />
       <InvitationView :invitation="invitation" />
       <!-- {{ invitation }} -->
     </div>
@@ -76,6 +77,7 @@ export default {
     'Storage': () => import('@/components/Storage.vue'),
     'Generique': () => import('@/views/Generique.vue'),
     'InvitationView': () => import('@/views/InvitationView.vue'),
+    'Group': () => import('@/views/Group.vue'),
   },
   data() {
     return {

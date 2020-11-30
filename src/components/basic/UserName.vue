@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid">
-    <b-button title="add friend" size="sm" variant="outline-info" :to="'/?add_group='+webId">
+  <span>
+     <b-button title="add friend" size="sm" variant="outline-info" :to="'/?add_group='+webId">
       <b-icon-person-plus></b-icon-person-plus>
     </b-button>
-    <router-link :to="'/?url='+webId" class="text-info m-2">{{ name }}</router-link>
-  </div>
+    <router-link :to="'/?url='+webId" class="text-info">{{ name }}</router-link>
+  </span>
 </template>
 
 <script>

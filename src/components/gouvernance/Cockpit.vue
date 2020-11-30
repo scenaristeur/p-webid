@@ -7,17 +7,17 @@
     <div>
       <b-tabs content-class="m-1" fill>
         <b-tab v-for="b in blocks" :key="b.name">
-          <template #title>
+          <template #title :title="b.name">
             <!-- <b-spinner type="grow" small></b-spinner> I'm <i>custom</i>-->
-            <b-icon :icon="b.icon" v-if="b.icon != undefined"></b-icon> <div v-else>{{b.name}}</div>
-            <b-dropdown id="dropdown-1" variant="outilne-primary" class="m-md-2">
+            <b-icon :icon="b.icon" v-if="b.icon != undefined" ></b-icon> <div v-else>{{b.name}}</div>
+            <!-- <b-dropdown id="dropdown-1" variant="outilne-primary" class="m-md-2">
               <b-dropdown-item @click="add(b)">Ajouter</b-dropdown-item>
               <b-dropdown-item>Second Action</b-dropdown-item>
               <b-dropdown-item>Third Action</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
               <b-dropdown-item active>Active action</b-dropdown-item>
               <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-            </b-dropdown>
+            </b-dropdown> -->
 
           </template>
           <div class="scroll">
@@ -27,6 +27,9 @@
             <div v-if="b.type=='Chat'">
               <ChatList :url="url"/>
             </div>
+            <div v-if="b.type=='Projet'">
+              <Projets :url="url"/>
+            </div>
             <div v-else v-html="b.description"> </div>
             <b>{{b.name}}</b> for {{ url }}.<br>
           </div>
@@ -34,7 +37,6 @@
       </b-tabs>
     </div>
 
-    <Projets />
     <!--
     <div>
     <b-card no-body>
@@ -97,6 +99,7 @@ export default {
       blocks: [
         {type: "Tension", name: "Tensions", icon:"lightning"},
         {type: "Action", name: "Mes prochaines actions", icon: "file-play"},
+          {type: "Projet", name: "Projets"},
         {type: "Checklist", name: "CheckList", icon: "list-check", description: "Ce dont on a besoin pour terminer une action ou un projet. <br>   [[ voir spoggy-group pour l'ajout , checkbox]]"},
         {type: "Indicateur", name: "Indicateurs", icon:"file-earmark-bar-graph"},
         {type: "Reunion", name: "Réunions", icon:"calendar3"},
@@ -130,7 +133,7 @@ export default {
 <style>
 .scroll {
   overflow-y: scroll;
-  min-width: 200px;
-  height: 200px;
+  min-width: 400px;
+  height: 400px;
 }
 </style>

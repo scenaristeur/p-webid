@@ -18,6 +18,11 @@ export default {
       // created() {
       //   console.log(Vue.VERSION);
       // },
+      methods: {
+        $title(text) {
+          return "the title is "+text
+        }
+      }
 
 
     });
