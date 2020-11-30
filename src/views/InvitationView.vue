@@ -128,7 +128,9 @@ class="mb-2">
   Activités : []<br>
   Projets: []<br>
   Competences Skills: []<br>
-  Redevabilités: []
+  Redevabilités: []<br>
+  Tensions : []<br>
+  (prochaines) Actions peuvent-elles être autonomes ou doivent-elles être rattachées à un projet ? 
 </b-card-text>
 <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>

@@ -10,7 +10,7 @@
     </div>
     <div class="actions">
       <a @click="$emit('pinTask', task.id)" v-if="!isChecked">
-        <span class="icon-star" />
+        <span class="star" />
       </a>
     </div>
   </div>
