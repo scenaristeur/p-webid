@@ -14,7 +14,8 @@
             </template>
             <h3>Créer</h3>
             <b-dropdown-item to="/groupe_create">Groupe</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <!-- <b-dropdown-item to="/tension_create">Tension</b-dropdown-item> -->
+            <!-- <b-dropdown-item href="#">Sign Out</b-dropdown-item> -->
           </b-nav-item-dropdown>
           <SolidLoginButton v-else />
         </b-navbar-nav>

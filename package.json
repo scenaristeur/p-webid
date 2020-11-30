@@ -23,7 +23,7 @@
     "rdf-namespaces": "^1.9.2",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
-    "solid-auth-client": "^2.5.3",
+    "solid-auth-client": "^2.5.4",
     "tripledoc": "^4.4.0",
     "vue": "^2.6.12",
     "vue-infinite-scroll": "^2.0.2",

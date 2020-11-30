@@ -26,7 +26,7 @@ export default {
     return {
       confident:"public",
       group:{},
-          options_confident: [
+      options_confident: [
         { value: 'public', text: 'Public. Tout le monde peut voir qui est dans le groupe et ce qui est publié' },
         { value: 'private', text: 'Privé. Seuls les membres peuvent voir qui est dans le groupe et ce qui est publié' }]
       }
@@ -53,12 +53,14 @@ export default {
     },
     methods:{
       update(){
-        this.group.path = this.profile.storage+this.confident+"/groups/"
+        this.group.path = this.profile.storage+this.confident+"/gouvernance/groups/"
         console.log(this.group)
       },
-      add(){
+      async add(){
         this.group.maker = this.profile.webId
-        this.$groupCreate(this.group)
+        let url = await this.$groupCreate(this.group)
+        this.group = {}
+        this.$router.push(url)
       }
     },
     computed:{

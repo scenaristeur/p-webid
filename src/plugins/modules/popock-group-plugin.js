@@ -9,7 +9,7 @@ import { getSolidDataset,
 
   import { FOAF, VCARD, DCTERMS, RDF } from "@inrupt/vocab-common-rdf";
   import { createDocument, fetchDocument } from 'tripledoc';
-  import { vcard, dct, foaf, ldp, rdfs, rdf} from 'rdf-namespaces' //
+  import { vcard, dct, foaf, ldp, rdfs, rdf, space} from 'rdf-namespaces' //
   //const { namedNode } = require('@rdfjs/data-model');
   //  import GroupMixin from '@/mixins/GroupMixin.js'
 
@@ -49,6 +49,7 @@ import { getSolidDataset,
             let subj =  groupDoc.addSubject({identifier:"this"})
             subj.addLiteral(vcard.fn, group.name)
             subj.addRef(ldp.inbox, "./"+ttl_name+"/inbox/")
+            subj.addRef(space.storage, "./"+ttl_name+'/')
             subj.addLiteral(dct.created, date)
             subj.addRef(foaf.maker, group.maker)
             subj.addRef(vcard.hasMember, group.maker)
@@ -129,6 +130,7 @@ import { getSolidDataset,
               ldp:inbox <./friend-requests-inbox/>;
               vcard:hasMember <https://friend1.inrupt.net/profile/card#me>;
               vcard:hasMember <https://friend2.inrupt.net/profile/card#me>.*/
+              return group.url+"#this"
 
             },
             async $updateGroupe(url){
