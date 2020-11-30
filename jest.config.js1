@@ -1,0 +1,2 @@
+// jest.config.js
+transformIgnorePatterns: ["/node_modules/(?!(@storybook/.*\\.vue$))"],

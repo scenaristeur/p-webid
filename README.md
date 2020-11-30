@@ -72,6 +72,9 @@ fb : https://webdesign.tutsplus.com/articles/design-and-code-an-integrated-faceb
 ## next ml5
 https://www.youtube.com/watch?v=FYgYyq-xqAw
 
+## storybook
+https://www.learnstorybook.com/intro-to-storybook/vue/fr/simple-component/
+
 ## loading external script
 https://levelup.gitconnected.com/how-to-load-external-javascript-files-from-the-browser-console-8eb97f7db778
 
