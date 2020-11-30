@@ -75,6 +75,10 @@ https://www.youtube.com/watch?v=FYgYyq-xqAw
 ## storybook
 https://www.learnstorybook.com/intro-to-storybook/vue/fr/simple-component/
 
+## categories of personnal info
+https://enterprivacy.com/wp-content/uploads/2018/09/Categories-of-Personal-Information.pdf
+https://dpvcg.github.io/dpv/#PrivacyPreference
+
 ## loading external script
 https://levelup.gitconnected.com/how-to-load-external-javascript-files-from-the-browser-console-8eb97f7db778
 

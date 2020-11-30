@@ -5,17 +5,18 @@
         <b-navbar-brand to="/">Solid Groups</b-navbar-brand>
 
         <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right v-if="webId != null">
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <b-button variant="light">
                 <b-icon-plus></b-icon-plus>
               </b-button>
             </template>
+            <h3>Créer</h3>
             <b-dropdown-item to="/groupe_create">Groupe</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
-          <SolidLoginButton />
+          <SolidLoginButton v-else />
         </b-navbar-nav>
 
 
@@ -40,6 +41,8 @@
               <b-dropdown-item href="#">RU</b-dropdown-item>
               <b-dropdown-item href="#">FA</b-dropdown-item>
             </b-nav-item-dropdown>
+
+            <SolidLoginButton v-if="webId != null" />
 
 
           </b-navbar-nav>
