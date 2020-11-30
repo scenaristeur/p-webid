@@ -1,9 +1,10 @@
 <template>
   <div id="app">
+    <Navbar />
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <SolidLoginButton />
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> | -->
+
     </div>
     <router-view/>
     <SolidTrackSession />
@@ -16,8 +17,8 @@ export default {
   //  store,
   name: 'App',
   components:{
-    'SolidLoginButton': () => import('@/components/solid/SolidLoginButton'),
-    'SolidTrackSession': () => import('@/components/solid/SolidTrackSession')
+    'SolidTrackSession': () => import('@/components/solid/SolidTrackSession'),
+    'Navbar': () => import('@/components/layout/Navbar.vue'),
   },
 }
 

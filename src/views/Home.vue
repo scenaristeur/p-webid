@@ -1,11 +1,12 @@
 <template>
   <div class="home">
-    <div v-if="invitation != undefined">
+
+      <div v-if="invitation != undefined">
       <Group :url="invitation" />
       <InvitationView :invitation="invitation" />
       <!-- {{ invitation }} -->
     </div>
-    <div v-else-if="url == undefined">
+    <div v-else-if="url == undefined"  class="container">
       <img alt="Vue logo" src="../assets/logo.png">
       <hr>
 
