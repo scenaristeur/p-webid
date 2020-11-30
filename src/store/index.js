@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import storage from './modules/storage'
 import profile from './modules/profile'
 // import parle from './modules/parle'
-// import chat from './modules/chat'
+import chat from './modules/chat'
 // import websocket from './modules/websocket'
 // import crud from './modules/crud'
 // import inbox from './modules/inbox'
@@ -24,5 +24,5 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: { storage, profile, workspaces /*websocket, parle, chat, crud, inbox, groups, agora, gouvernance, workspaces, semapps, migration*/}
+  modules: { storage, profile, workspaces, chat, /*websocket, parle,  crud, inbox, groups, agora, gouvernance, workspaces, semapps, migration*/}
 })

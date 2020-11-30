@@ -5,11 +5,11 @@
 
 
     <div>
-      <b-tabs content-class="mt-3" fill>
+      <b-tabs content-class="m-1" fill>
         <b-tab v-for="b in blocks" :key="b.name">
           <template #title>
             <!-- <b-spinner type="grow" small></b-spinner> I'm <i>custom</i>-->
-            {{b.name}}
+            <b-icon :icon="b.icon" v-if="b.icon != undefined"></b-icon> <div v-else>{{b.name}}</div>
             <b-dropdown id="dropdown-1" variant="outilne-primary" class="m-md-2">
               <b-dropdown-item @click="add(b)">Ajouter</b-dropdown-item>
               <b-dropdown-item>Second Action</b-dropdown-item>
@@ -20,9 +20,12 @@
             </b-dropdown>
 
           </template>
-          <div class="scroll">      
+          <div class="scroll">
             <div v-if="b.type=='Wiki'">
               <Wiki :url="url"/>
+            </div>
+            <div v-if="b.type=='Chat'">
+              <ChatList :url="url"/>
             </div>
             <div v-else v-html="b.description"> </div>
             <b>{{b.name}}</b> for {{ url }}.<br>
@@ -82,6 +85,7 @@ export default {
     //  'Generique': () => import('@/components/gouvernance/Generique.vue'),
     'Projets': () => import('@/components/gouvernance/Projets.vue'),
     'Wiki': () => import('@/components/gouvernance/Wiki.vue'),
+    'ChatList': () => import('@/components/chat/ChatList.vue'),
 
   },
   props:['url'],
@@ -90,34 +94,37 @@ export default {
   },
   data: function(){
     return {
-      blocks: [{type: "Action", name: "Mes prochaines actions"},
-      {type: "Checklist", name: "CheckList", description: "Ce dont on a besoin pour terminer une action ou un projet. <br>   [[ voir spoggy-group pour l'ajout , checkbox]]"},
-      {type: "Indicateur", name: "Indicateurs"},
-      {type: "Reunion", name: "Réunions"},
-      {type: "Wiki", name: "Wiki", description: "La fonctionnalité de création d'article sera bientôt opérationnelle. En attendant, vous pouvez utiliser <a href='https://scenaristeur.github.io/solid-vue-panes/post' target='_blank'>Popock post</a> et notamment l'outil Dokieli" }
-
-    ],
-  }
-},
-methods: {
-  paneChange(p){
-    console.log(p)
+      blocks: [
+        {type: "Tension", name: "Tensions", icon:"lightning"},
+        {type: "Action", name: "Mes prochaines actions", icon: "file-play"},
+        {type: "Checklist", name: "CheckList", icon: "list-check", description: "Ce dont on a besoin pour terminer une action ou un projet. <br>   [[ voir spoggy-group pour l'ajout , checkbox]]"},
+        {type: "Indicateur", name: "Indicateurs", icon:"file-earmark-bar-graph"},
+        {type: "Reunion", name: "Réunions", icon:"calendar3"},
+        {type: "Wiki", name: "Wiki", icon:"receipt", description: "La fonctionnalité de création d'article sera bientôt opérationnelle. En attendant, vous pouvez utiliser <a href='https://scenaristeur.github.io/solid-vue-panes/post' target='_blank'>Popock post</a> et notamment l'outil Dokieli" },
+        {type: "Chat", name: "Chat", icon: "chat"},
+        {type: "Celebration", name: "Celebration", icon: "trophy"},
+      ],
+    }
   },
-  add(b){
-    console.log("block", b)
-  }
-},
-watch:{
-  webId(){
-    console.log("watch webid", this.webId)
-  }
-},
-computed:{
-  webId:{
-    get: function() { return this.$store.state.profile.profile.webId},
-    set: function() {}
+  methods: {
+    paneChange(p){
+      console.log(p)
+    },
+    add(b){
+      console.log("block", b)
+    }
   },
-}
+  watch:{
+    webId(){
+      console.log("watch webid", this.webId)
+    }
+  },
+  computed:{
+    webId:{
+      get: function() { return this.$store.state.profile.profile.webId},
+      set: function() {}
+    },
+  }
 }
 </script>
 <style>

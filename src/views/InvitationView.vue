@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div v-if="!members.includes(webId)">
-      <b-button variant="success"  @click="join">Ask to join `{{ name }}` group</b-button>
-      <b-button variant="success"  @click="accept">Accept invitation</b-button>
-      <b-button variant="success"  @click="reject">Reject invitation</b-button>
+      <b-button variant="outline-success"  @click="join">Ask to join `{{ name }}` group</b-button>
+      <b-button variant="outline-success"  @click="accept">Accept invitation</b-button>
+      <b-button variant="outline-success"  @click="reject">Reject invitation</b-button>
     </div>
 
     <!-- <b-button variant="outline-success" @click="newGroup" disabled>Create a Group</b-button> -->
