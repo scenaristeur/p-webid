@@ -34,6 +34,23 @@ import { getSolidDataset,
         //   console.log(Vue.VERSION);
         // },
         methods: {
+          async $getStorage(url){
+            let res = this.url.endsWith('#this') ? this.url : this.url+'#this'
+            let storage = await solid.data[res].storage
+            console.log(`${storage}`)
+            if (`${storage}` == undefined){
+              var path = this.url.substring(0,this.url.lastIndexOf("/"))
+              let name = await solid.data[res].vcard$fn
+
+              let ttl_name = `${name}`.trim().replace(/\s/g, '_')
+              console.log(`${name}`, this.url, ttl_name)
+              storage = [path, ttl_name, ""].join('/')
+              console.log(storage)
+              await !fc.itemExists(this.storage) ? await fc.createFolder(this.storage) : ""
+              await solid.data[res]['http://www.w3.org/ns/pim/space#storage'].set(namedNode(storage))
+            }
+            return `${storage}`
+          },
           async $groupCreate(group){
             //  this.name = this.name.trim()
             let ttl_name = group.name.replace(/\s/g, '_')

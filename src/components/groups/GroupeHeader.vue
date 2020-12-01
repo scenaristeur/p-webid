@@ -1,6 +1,7 @@
 <template>
   <div class="group-header">
-    <b-alert show>Groupe géré par <UserNameLite :webId="group.maker" /></b-alert>
+    <b-alert show>Groupe géré par <UserNameLite :webId="group.maker" />
+  </b-alert>
 
     <div class="container">
       <div>
@@ -24,7 +25,8 @@
           <Inbox v-if="group.members.includes(webId)" :inbox="group.inbox" />
           <b-button size="sm"  v-if="group.parent != undefined == group.parent != group.url"
            :to="'/?invitation='+group.parent" class="sm" variant="outline-success">Super Group ({{group.parent | localname }})</b-button>
-
+           <a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+group.url"
+           target="_blank">vue Spoggy</a>
         </b-card-header>
         <b-card-text>
           {{ group.purpose }}

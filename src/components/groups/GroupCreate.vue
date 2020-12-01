@@ -60,7 +60,7 @@ export default {
         this.group.maker = this.profile.webId
         let url = await this.$groupCreate(this.group)
         this.group = {}
-        this.$router.push(url)
+        this.$router.push({ path: '/', query: { invitation: url } })
       }
     },
     computed:{

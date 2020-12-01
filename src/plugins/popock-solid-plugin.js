@@ -1,6 +1,7 @@
 import PopockGroupPlugin from './modules/popock-group-plugin'
 import PopockWebidPlugin from './modules/popock-webid-plugin'
 
+
 const defaultOptions = {
   cutoff: 50
 };
@@ -17,6 +18,7 @@ export default {
 
     Vue.use(PopockGroupPlugin, userOptions);
     Vue.use(PopockWebidPlugin, userOptions);
+
 
     Vue.mixin({
       // created() {

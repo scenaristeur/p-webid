@@ -102,7 +102,7 @@ export default {
   methods: {
     async update(){
       console.log(this.url)
-      let storage = await this.getStorage(this.url)
+      let storage = await this.$getStorage(this.url)
       this.storage = `${storage}`+'wiki/'
       if( !(await fc.itemExists(this.storage)) ) {
         await fc.createFolder(this.storage) // only create if it doesn't already exist

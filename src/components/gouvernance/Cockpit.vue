@@ -11,50 +11,53 @@
             <!-- <b-spinner type="grow" small></b-spinner> I'm <i>custom</i>-->
             <b-icon :icon="b.icon" v-if="b.icon != undefined" ></b-icon> <div v-else>{{b.name}}</div>
             <!-- <b-dropdown id="dropdown-1" variant="outilne-primary" class="m-md-2">
-              <b-dropdown-item @click="add(b)">Ajouter</b-dropdown-item>
-              <b-dropdown-item>Second Action</b-dropdown-item>
-              <b-dropdown-item>Third Action</b-dropdown-item>
-              <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item active>Active action</b-dropdown-item>
-              <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-            </b-dropdown> -->
+            <b-dropdown-item @click="add(b)">Ajouter</b-dropdown-item>
+            <b-dropdown-item>Second Action</b-dropdown-item>
+            <b-dropdown-item>Third Action</b-dropdown-item>
+            <b-dropdown-divider></b-dropdown-divider>
+            <b-dropdown-item active>Active action</b-dropdown-item>
+            <b-dropdown-item disabled>Disabled action</b-dropdown-item>
+          </b-dropdown> -->
 
-          </template>
-          <div class="scroll">
-            <div v-if="b.type=='Wiki'">
-              <Wiki :url="url"/>
-            </div>
-            <div v-if="b.type=='Chat'">
-              <ChatList :url="url"/>
-            </div>
-            <div v-if="b.type=='Projet'">
-              <Projets :url="url"/>
-            </div>
-            <div v-else v-html="b.description"> </div>
-            <b>{{b.name}}</b> for {{ url }}.<br>
+        </template>
+        <div class="scroll">
+          <div v-if="b.type=='Wiki'">
+            <Wiki :url="url"/>
           </div>
-        </b-tab>
-      </b-tabs>
-    </div>
+          <div v-if="b.type=='Chat'">
+            <ChatList :url="url"/>
+          </div>
+          <div v-if="b.type=='Projet'">
+            <Projets :url="url"/>
+          </div>
+          <div v-else-if="b.type == 'Action' || b.type == 'Tension'">
+            <List :url="url" :block="b" />
+          </div>
+          <div v-else v-html="b.description"> </div>
+          <b>{{b.name}}</b> for {{ url }}.<br>
+        </div>
+      </b-tab>
+    </b-tabs>
+  </div>
 
-    <!--
-    <div>
-    <b-card no-body>
-    <b-card-header header-tag="nav">
-    <b-nav card-header tabs justified>
-    <b-nav-item v-for="b in blocks" :key="b.name" :block="b">{{b.name}}</b-nav-item>
-    <b-nav-item-dropdown
-    :id="b.name"
-    :text="b.name"
-    toggle-class="nav-link-custom"
-    @click="paneChange()"
-    right
-    v-for="b in blocks" :key="b.name" :block="b">
-    <b-dropdown-item>One</b-dropdown-item>
-    <b-dropdown-item>Two</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item>Three</b-dropdown-item>
-  </b-nav-item-dropdown>
+  <!--
+  <div>
+  <b-card no-body>
+  <b-card-header header-tag="nav">
+  <b-nav card-header tabs justified>
+  <b-nav-item v-for="b in blocks" :key="b.name" :block="b">{{b.name}}</b-nav-item>
+  <b-nav-item-dropdown
+  :id="b.name"
+  :text="b.name"
+  toggle-class="nav-link-custom"
+  @click="paneChange()"
+  right
+  v-for="b in blocks" :key="b.name" :block="b">
+  <b-dropdown-item>One</b-dropdown-item>
+  <b-dropdown-item>Two</b-dropdown-item>
+  <b-dropdown-divider></b-dropdown-divider>
+  <b-dropdown-item>Three</b-dropdown-item>
+</b-nav-item-dropdown>
 </b-nav>
 </b-card-header>
 
@@ -88,6 +91,7 @@ export default {
     'Projets': () => import('@/components/gouvernance/Projets.vue'),
     'Wiki': () => import('@/components/gouvernance/Wiki.vue'),
     'ChatList': () => import('@/components/chat/ChatList.vue'),
+    'List': () => import('@/components/basic/List.vue'),
 
   },
   props:['url'],
@@ -99,7 +103,7 @@ export default {
       blocks: [
         {type: "Tension", name: "Tensions", icon:"lightning"},
         {type: "Action", name: "Mes prochaines actions", icon: "file-play"},
-          {type: "Projet", name: "Projets"},
+        {type: "Projet", name: "Projets"},
         {type: "Checklist", name: "CheckList", icon: "list-check", description: "Ce dont on a besoin pour terminer une action ou un projet. <br>   [[ voir spoggy-group pour l'ajout , checkbox]]"},
         {type: "Indicateur", name: "Indicateurs", icon:"file-earmark-bar-graph"},
         {type: "Reunion", name: "Réunions", icon:"calendar3"},

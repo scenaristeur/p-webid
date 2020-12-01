@@ -7,7 +7,7 @@
     </div>
 
     <!-- <b-button variant="outline-success" @click="newGroup" disabled>Create a Group</b-button> -->
-  <b-button variant="outline-success" href="https://scenaristeur.github.io/solid-vue-panes/groups" target="_blank" >Create a Group with poPock</b-button>
+  <!-- <b-button variant="outline-success" href="https://scenaristeur.github.io/solid-vue-panes/groups" target="_blank" >Create a Group with poPock</b-button> -->
 
 
     <!-- <div v-if="webId != null">
@@ -19,7 +19,7 @@
   <SolidLoginButton />
 </div> -->
 <!-- <GroupsToolbar :path="invitation"/> -->
-<GroupCreate v-on:created="initGroups" />
+<!-- <GroupCreate v-on:created="initGroups" /> -->
 
 <b-card-group column>
   <b-card
@@ -130,7 +130,7 @@ class="mb-2">
   Competences Skills: []<br>
   Redevabilités: []<br>
   Tensions : []<br>
-  (prochaines) Actions peuvent-elles être autonomes ou doivent-elles être rattachées à un projet ? 
+  (prochaines) Actions peuvent-elles être autonomes ou doivent-elles être rattachées à un projet ?
 </b-card-text>
 <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
 </b-card>
@@ -169,7 +169,7 @@ import { getSolidDataset,
       'UserName': () => import('@/components/basic/UserName'),
       'Date': () => import('@/components/basic/Date'),
       //  'GroupsToolbar': () => import('@/components/groups/GroupsToolbar'),
-      'GroupCreate': () => import('@/components/groups/GroupCreate'),
+    //  'GroupCreate': () => import('@/components/groups/GroupCreate'),
       //  'InboxWidget': () => import('@/components/inbox/InboxWidget'),
       'Inbox': () => import('@/components/inbox/Inbox'),
       'Item': () => import('@/components/basic/Item'),

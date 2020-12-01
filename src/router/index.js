@@ -19,6 +19,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "group_create" */ '../components/groups/GroupCreate.vue')
   },
   {
+    path: '/edit',
+    name: 'Edit',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "edit" */ '@/views/Edit.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

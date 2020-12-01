@@ -24,6 +24,7 @@
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "solid-auth-client": "^2.5.4",
+    "solid-file-client": "^1.2.2",
     "tripledoc": "^4.4.0",
     "vue": "^2.6.12",
     "vue-infinite-scroll": "^2.0.2",

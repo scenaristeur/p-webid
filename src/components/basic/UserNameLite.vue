@@ -18,7 +18,7 @@ export default {
     }
   },
   created(){
-  this.name = this.webId.split('/').slice(2,3)[0]
+  this.webId != undefined? this.name = this.webId.split('/').slice(2,3)[0] : ""
   },
   watch: {
     async webId (webId) {

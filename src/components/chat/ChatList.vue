@@ -99,19 +99,19 @@ export default {
   },
   methods:{
     async update(){
-      console.log(this.url)
-      let storage = await this.getStorage(this.url)
+    //  console.log(this.url)
+      let storage = await this.$getStorage(this.url)
       this.storage = `${storage}`+'chat/'
       let index = this.storage+'index.ttl'
       if( !(await fc.itemExists(index)) ) {
         await fc.createFile(index, this.index_cat, "text/turtle") // only create if it doesn't already exist
       }
       // ? await fc.createFolder(this.storage) : ""
-      console.log(this.storage)
+    //  console.log(this.storage)
       // this.folder = await fc.readFolder(this.storage)
       // console.log(this.folder)
       this.data = []
-      this.limite =  new Date("2020-11-01")
+      this.limite =  new Date("2020-11-27")
       this.initChat(this.storage)
 
     },

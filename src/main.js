@@ -12,10 +12,13 @@ import ProfilePlugin from "./plugins/profile-plugin.js";
 import ConverterPlugin from "./plugins/converter-plugin.js";
 import ResourcePlugin from "./plugins/resource-plugin.js";
 import PopockSolidPlugin from "./plugins/popock-solid-plugin.js";
+import PopockToolPlugin from "./plugins/popock-tool-plugin.js";
 Vue.use(ProfilePlugin, { cutoff: 100 });
-Vue.use(ConverterPlugin, { cutoff: 100 });
-Vue.use(ResourcePlugin, { cutoff: 100 });
-Vue.use(PopockSolidPlugin, { cutoff: 100 });
+Vue.use(ConverterPlugin);
+Vue.use(ResourcePlugin);
+Vue.use(PopockSolidPlugin);
+Vue.use(PopockToolPlugin);
+
 
 
 import 'bootstrap/dist/css/bootstrap.css'
